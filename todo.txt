@@ -1,5 +1,4 @@
 Bossing:
-- Add a way for users to add new characters to the table (along with changing the initial state)
 - Add a way for users to remove characters from the table
 - Add a way for users to customize the clear difficulties for each boss per character
 - Add a way for users to edit the names of the characters

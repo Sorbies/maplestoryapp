@@ -35,6 +35,7 @@ function BossingTable(props) {
                 <tr>
                     <th>Character</th>
                     {bosses.map( (boss, index) => <th key={"boss" + index}>{boss[0]}</th> )}
+                    <th>Delete</th>
                 </tr>
             </thead>
 
@@ -49,11 +50,15 @@ function BossingTable(props) {
                             <td key={"char" + charIndex + "boss" + bossIndex}>
                                 {translateDifficulty(difficulty)} <br/>
                                 <button type="button" key={"char" + charIndex + "boss" + bossIndex + "button"} 
-                                        onClick={() => {props.handleProgress(props.charProgress, charIndex, bossIndex);}}>
+                                        onClick={() => props.handleProgress(charIndex, bossIndex)}>
                                     {props.charProgress[charIndex][bossIndex] ? "Clear" : "Not Done"}
                                 </button>
                             </td>
                         )})}
+                        {/* The delete button */}
+                        <td>
+                            <button type="button" onClick={() => props.deleteChar(charIndex)}>Delete</button>
+                        </td>
                     </tr>
                 )})}
             </tbody>
