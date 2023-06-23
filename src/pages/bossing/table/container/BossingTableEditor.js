@@ -12,7 +12,7 @@ function BossingTableEditor(props) {
                 for (let difficulty = 1; difficulty <= 5; difficulty++) {
                     if (bosses[bossIndex][difficulty] === 0) {
                         let button = document.getElementById("c" + charIndex + "b" + bossIndex + "d" + difficulty);
-                        button.setAttribute("disabled", true);
+                        button.setAttribute("hidden", true);
                     }
                 }
             }

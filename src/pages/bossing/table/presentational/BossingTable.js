@@ -55,30 +55,31 @@ function BossingTable(props) {
                                         onClick={() => props.handleProgress(charIndex, bossIndex)}>
                                     {props.charProgress[charIndex][bossIndex] ? "Clear" : "Not Done"}
                                 </button>
+                                <br/>
                                 <button type="button"         key={"c" + charIndex + "b" + bossIndex + "d" + 1} 
                                         className="difficulty" id={"c" + charIndex + "b" + bossIndex + "d" + 1} 
                                         onClick={() => {props.handleDifficulty(1, charIndex, bossIndex)}}>
-                                    Skip
+                                    ∅
                                 </button>
                                 <button type="button"         key={"c" + charIndex + "b" + bossIndex + "d" + 2} 
                                         className="difficulty" id={"c" + charIndex + "b" + bossIndex + "d" + 2} 
                                         onClick={() => {props.handleDifficulty(2, charIndex, bossIndex)}}>
-                                    Easy
+                                    E
                                 </button>
                                 <button type="button"         key={"c" + charIndex + "b" + bossIndex + "d" + 3} 
                                         className="difficulty" id={"c" + charIndex + "b" + bossIndex + "d" + 3}
                                         onClick={() => {props.handleDifficulty(3, charIndex, bossIndex)}}>
-                                    Normal
+                                    N
                                 </button>
                                 <button type="button"         key={"c" + charIndex + "b" + bossIndex + "d" + 4} 
                                         className="difficulty" id={"c" + charIndex + "b" + bossIndex + "d" + 4}
                                         onClick={() => {props.handleDifficulty(4, charIndex, bossIndex)}}>
-                                    Hard
+                                    H
                                 </button>
                                 <button type="button"         key={"c" + charIndex + "b" + bossIndex + "d" + 5} 
                                         className="difficulty" id={"c" + charIndex + "b" + bossIndex + "d" + 5}
                                         onClick={() => {props.handleDifficulty(5, charIndex, bossIndex)}}>
-                                    Extreme
+                                    X
                                 </button>
                             </td>
                         )})}

@@ -4,6 +4,7 @@
     - Simplified Chaos/Hard down to Hard
     - Grayed out the select difficulty buttons for the buttons that don't exist
     - Grayed out the clear button if the boss is skipped
+    - Changed the non-existent difficulty buttons from being grayed out to just being hidden
 
 2023-06-22:
     - Refactored variables/functions in Bossing.js and separated them into BossingData.js, BossingCalculations.js, and BossingTableEditor.js
