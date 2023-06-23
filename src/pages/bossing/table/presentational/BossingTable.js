@@ -1,3 +1,5 @@
+import { bosses } from "../../BossingData";
+
 function BossingTable(props) {
     //Turns the number from charDifficulties into English
     const translateDifficulty = (difficulty) => {
@@ -32,7 +34,7 @@ function BossingTable(props) {
                 {/* Creates the header row of boss names */}
                 <tr>
                     <th>Character</th>
-                    {props.bosses.map( (boss, index) => <th key={"boss" + index}>{boss[0]}</th> )}
+                    {bosses.map( (boss, index) => <th key={"boss" + index}>{boss[0]}</th> )}
                 </tr>
             </thead>
 

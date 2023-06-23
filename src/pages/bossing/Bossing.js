@@ -1,8 +1,6 @@
 import { useState, useEffect } from "react";
-import BossingStats from "./stats/presentational/BossingStats";
-import BossingTable from "./table/presentational/BossingTable";
 import BossingCalculations from "./stats/container/BossingCalculations";
-import { bosses, bossPrices } from "./BossingData";
+import BossingTableEditor from "./table/container/BossingTableEditor";
 
 function Bossing() {
   //localStorage.clear();
@@ -35,22 +33,13 @@ function Bossing() {
     false, false, false, false, false, false, false, false, false, false, false]
   const [charProgress, setCharProgress] = usePersistingState("charProgress", [falses, falses]) //hook for char progress (boss clear status for the week)
 
-
-
-  //This function will allow updating the clear status of the character's bosses.
-  const handleProgress = (prevProgress, charIndex, bossIndex) => {
-    let newProgress = [...prevProgress]
-    newProgress[charIndex][bossIndex] = !prevProgress[charIndex][bossIndex];
-    setCharProgress(newProgress);
-  }
-
   return (
     <>
       <BossingCalculations charNames={charNames} charDifficulties={charDifficulties} charProgress={charProgress}/>
-      <BossingTable bosses={bosses}
+      <BossingTableEditor
         charNames={charNames} setCharNames={setCharNames}
         charDifficulties={charDifficulties} setCharDifficulties={setCharDifficulties}
-        charProgress={charProgress} handleProgress={handleProgress} />
+        charProgress={charProgress} setCharProgress={setCharProgress}/>
     </>
   );
 }
