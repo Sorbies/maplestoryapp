@@ -34,7 +34,7 @@ function BossingTable(props) {
                 {/* Creates the header row of boss names */}
                 <tr>
                     <th>Character</th>
-                    {bosses.map( (boss, index) => <th key={"boss" + index}>{boss[0]}</th> )}
+                    {bosses.map((boss, index) => <th key={"boss" + index}>{boss[0]}</th> )}
                     <th>Delete</th>
                 </tr>
             </thead>
@@ -53,6 +53,11 @@ function BossingTable(props) {
                                         onClick={() => props.handleProgress(charIndex, bossIndex)}>
                                     {props.charProgress[charIndex][bossIndex] ? "Clear" : "Not Done"}
                                 </button>
+                                <button type="button" key={"char" + charIndex + "boss" + bossIndex + "difficulty" + 1 + "button"} className="difficulty" onClick={() => {props.handleDifficulty(1, charIndex, bossIndex)}}>Skip</button>
+                                <button type="button" key={"char" + charIndex + "boss" + bossIndex + "difficulty" + 2 + "button"} className="difficulty" onClick={() => {props.handleDifficulty(2, charIndex, bossIndex)}}>Easy</button>
+                                <button type="button" key={"char" + charIndex + "boss" + bossIndex + "difficulty" + 3 + "button"} className="difficulty" onClick={() => {props.handleDifficulty(3, charIndex, bossIndex)}}>Normal</button>
+                                <button type="button" key={"char" + charIndex + "boss" + bossIndex + "difficulty" + 4 + "button"} className="difficulty" onClick={() => {props.handleDifficulty(4, charIndex, bossIndex)}}>Chaos/Hard</button>
+                                <button type="button" key={"char" + charIndex + "boss" + bossIndex + "difficulty" + 5 + "button"} className="difficulty" onClick={() => {props.handleDifficulty(5, charIndex, bossIndex)}}>Extreme</button>
                             </td>
                         )})}
                         {/* The delete button */}

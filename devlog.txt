@@ -1,5 +1,6 @@
 2023-06-23:
     - Added the ability to delete characters from the bossing table (new column in the table having the button)
+    - Added the ability to manipulate the difficulties of the bosses that the characters do
 
 2023-06-22:
     - Refactored variables/functions in Bossing.js and separated them into BossingData.js, BossingCalculations.js, and BossingTableEditor.js

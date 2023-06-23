@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import BossingTable from "../presentational/BossingTable";
 
 function BossingTableEditor(props) {
@@ -36,6 +36,15 @@ function BossingTableEditor(props) {
         props.setCharProgress(newCharProgress);
     }
 
+    //Updates the clear difficulty a character does for that boss
+    const handleDifficulty = (difficulty, charIndex, bossIndex) => {
+        let newCharDifficulties = [...props.charDifficulties];
+        newCharDifficulties[charIndex][bossIndex] = difficulty;
+
+        props.setCharDifficulties(newCharDifficulties);
+        console.log(props.charDifficulties);
+    }
+
     //This function will allow updating the clear status of the character's bosses.
     const handleProgress = (charIndex, bossIndex) => {
         let newProgress = [...props.charProgress]
@@ -47,8 +56,8 @@ function BossingTableEditor(props) {
         <>
             <BossingTable
                 charNames={props.charNames} addNewChar={addNewChar} deleteChar={deleteChar}
-                charDifficulties={props.charDifficulties} setCharDifficulties={props.setCharDifficulties}
-                charProgress={props.charProgress} handleProgress={handleProgress} 
+                charDifficulties={props.charDifficulties} handleDifficulty={handleDifficulty}
+                charProgress={props.charProgress} handleProgress={handleProgress}
                 newChar={newChar} handleNewChar={handleNewChar} />
         </>
 
