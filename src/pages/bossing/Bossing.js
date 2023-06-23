@@ -24,14 +24,9 @@ function Bossing() {
     return [someState, setSomeState]
   }
 
-  const [charNames, setCharNames] = usePersistingState("charNames", ["Schwarmeeze", "toetocher"]); //hook for char names
-
-  const mainDiffs = [1, 1, 1, 1, 4, 4, 4, 4, 4, 4, 4, 3, 4, 4, 4, 4, 4, 4, 4, 4, 4, 3, 1]; //dummy initial difficulties
-  const [charDifficulties, setCharDifficulties] = usePersistingState("charDifficulties", [mainDiffs, mainDiffs]); //hook for char difficulties (boss difficulties that the char can run)
-
-  const falses = [false, false, false, false, false, false, false, false, false, false, false, false,  //dummy initial clear status
-    false, false, false, false, false, false, false, false, false, false, false]
-  const [charProgress, setCharProgress] = usePersistingState("charProgress", [falses, falses]) //hook for char progress (boss clear status for the week)
+  const [charNames, setCharNames] = usePersistingState("charNames", []); //hook for char names
+  const [charDifficulties, setCharDifficulties] = usePersistingState("charDifficulties", []); //hook for char difficulties (boss difficulties that the char can run)
+  const [charProgress, setCharProgress] = usePersistingState("charProgress", []) //hook for char progress (boss clear status for the week)
 
   return (
     <>

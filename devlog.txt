@@ -2,6 +2,8 @@
     - Refactored variables/functions in Bossing.js and separated them into BossingData.js, BossingCalculations.js, and BossingTableEditor.js
     - Refactored file structure of the pages
     - Put the project up on GitHub
+    - Added the ability to add characters to the bossing table
+    - Removed hardcoded initial states
 
 2023-06-21:
     - Got the pages configuration running
