@@ -1,0 +1,22 @@
+2023-06-22:
+    - Refactored variables/functions in Bossing.js and separated them into BossingData.js and BossingCalculations.js
+    - Refactored file structure of the pages
+
+2023-06-21:
+    - Got the pages configuration running
+    - Added a basic nav bar
+    - Organized pages into containers and presentational components
+    - Made the header row for the bossing table
+    - Hard coded a row for the bossing table
+    - Converted the hardcoded row into multiple states in Bossing.js
+    - Added ability to toggle the progress state with a button for each boss
+    - Displayed boss difficulties for each boss for each character
+    - Added ability to track current income earned based on what bosses are checked as cleared (with COMMAS >:D)
+    - Added ability to remember states through refreshes using local storage
+    - Refactored my copy-pasted hook logic that was for each state (was using a state hook and two effect hooks to init state and set up local storage).
+      Now they all use the same custom hook but with diff arguments passed in (I feel like a genius)
+
+2023-06-20:
+    - Created this app
+    - Installed React Router to add pages
+    - Started adding subpages
