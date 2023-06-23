@@ -15,7 +15,7 @@ function BossingTable(props) {
                 answer = "Normal";
                 break;
             case 4:
-                answer = "Chaos/Hard";
+                answer = "Hard";
                 break;
             case 5:
                 answer = "Extreme";
@@ -40,24 +40,46 @@ function BossingTable(props) {
             </thead>
 
             <tbody>
-                {/* Creates a row for each character, then data for the bosses they clear */}
+                {/* Creates a row for each character, then data for the bosses they clear 
+                    keys: c stands for char, b stands for boss, d stands for difficulty */}
                 {props.charNames.map( (charName, charIndex) => { return (
                     <tr key={"row" + charIndex}>
                         {/* The character name */}
-                        <td key={"char" + charIndex}>{charName}</td>
+                        <td key={"c" + charIndex}>{charName}</td>
                         {/* The checkboxes */ }
                         {props.charDifficulties[charIndex].map( (difficulty, bossIndex) => { return (
-                            <td key={"char" + charIndex + "boss" + bossIndex}>
+                            <td key={"c" + charIndex + "b" + bossIndex}>
                                 {translateDifficulty(difficulty)} <br/>
-                                <button type="button" key={"char" + charIndex + "boss" + bossIndex + "button"} 
+                                <button type="button" key={"c" + charIndex + "b" + bossIndex + "button"}
+                                                       id={"c" + charIndex + "b" + bossIndex + "button"}
                                         onClick={() => props.handleProgress(charIndex, bossIndex)}>
                                     {props.charProgress[charIndex][bossIndex] ? "Clear" : "Not Done"}
                                 </button>
-                                <button type="button" key={"char" + charIndex + "boss" + bossIndex + "difficulty" + 1 + "button"} className="difficulty" onClick={() => {props.handleDifficulty(1, charIndex, bossIndex)}}>Skip</button>
-                                <button type="button" key={"char" + charIndex + "boss" + bossIndex + "difficulty" + 2 + "button"} className="difficulty" onClick={() => {props.handleDifficulty(2, charIndex, bossIndex)}}>Easy</button>
-                                <button type="button" key={"char" + charIndex + "boss" + bossIndex + "difficulty" + 3 + "button"} className="difficulty" onClick={() => {props.handleDifficulty(3, charIndex, bossIndex)}}>Normal</button>
-                                <button type="button" key={"char" + charIndex + "boss" + bossIndex + "difficulty" + 4 + "button"} className="difficulty" onClick={() => {props.handleDifficulty(4, charIndex, bossIndex)}}>Chaos/Hard</button>
-                                <button type="button" key={"char" + charIndex + "boss" + bossIndex + "difficulty" + 5 + "button"} className="difficulty" onClick={() => {props.handleDifficulty(5, charIndex, bossIndex)}}>Extreme</button>
+                                <button type="button"         key={"c" + charIndex + "b" + bossIndex + "d" + 1} 
+                                        className="difficulty" id={"c" + charIndex + "b" + bossIndex + "d" + 1} 
+                                        onClick={() => {props.handleDifficulty(1, charIndex, bossIndex)}}>
+                                    Skip
+                                </button>
+                                <button type="button"         key={"c" + charIndex + "b" + bossIndex + "d" + 2} 
+                                        className="difficulty" id={"c" + charIndex + "b" + bossIndex + "d" + 2} 
+                                        onClick={() => {props.handleDifficulty(2, charIndex, bossIndex)}}>
+                                    Easy
+                                </button>
+                                <button type="button"         key={"c" + charIndex + "b" + bossIndex + "d" + 3} 
+                                        className="difficulty" id={"c" + charIndex + "b" + bossIndex + "d" + 3}
+                                        onClick={() => {props.handleDifficulty(3, charIndex, bossIndex)}}>
+                                    Normal
+                                </button>
+                                <button type="button"         key={"c" + charIndex + "b" + bossIndex + "d" + 4} 
+                                        className="difficulty" id={"c" + charIndex + "b" + bossIndex + "d" + 4}
+                                        onClick={() => {props.handleDifficulty(4, charIndex, bossIndex)}}>
+                                    Hard
+                                </button>
+                                <button type="button"         key={"c" + charIndex + "b" + bossIndex + "d" + 5} 
+                                        className="difficulty" id={"c" + charIndex + "b" + bossIndex + "d" + 5}
+                                        onClick={() => {props.handleDifficulty(5, charIndex, bossIndex)}}>
+                                    Extreme
+                                </button>
                             </td>
                         )})}
                         {/* The delete button */}

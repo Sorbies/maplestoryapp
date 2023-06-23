@@ -1,9 +1,36 @@
 import { useState, useEffect } from "react";
 import BossingTable from "../presentational/BossingTable";
+import { bosses } from "../../BossingData";
 
 function BossingTableEditor(props) {
     //hooks
-    const [newChar, setNewChar] = useState("");
+    const [newChar, setNewChar] = useState(""); //state hook for the new character
+    //effect hook that disables buttons for invalid boss difficulties when new characters are added
+    useEffect(() => {
+        for (let charIndex = 0; charIndex < props.charNames.length; charIndex++) {
+            for (let bossIndex = 0; bossIndex < props.charDifficulties[charIndex].length; bossIndex++) {
+                for (let difficulty = 1; difficulty <= 5; difficulty++) {
+                    if (bosses[bossIndex][difficulty] === 0) {
+                        let button = document.getElementById("c" + charIndex + "b" + bossIndex + "d" + difficulty);
+                        button.setAttribute("disabled", true);
+                    }
+                }
+            }
+        }
+    }, [props.charNames]);
+    //effect hook that disables the clear status button for skipped bosses
+    useEffect(() => {
+        for (let charIndex = 0; charIndex < props.charNames.length; charIndex++) {
+            for (let bossIndex = 0; bossIndex < props.charDifficulties[charIndex].length; bossIndex++) {
+                let button = document.getElementById("c" + charIndex + "b" + bossIndex + "button");
+                if (props.charDifficulties[charIndex][bossIndex] === 1) {
+                    button.setAttribute("disabled", true);
+                } else {
+                    button.removeAttribute("disabled");
+                }
+            }
+        }
+    });
 
     //variables
     const initialDifficulties = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //dummy initial difficulties
