@@ -1,11 +1,13 @@
 Bossing:
+- Get rid of the prop drilling
 - Add a way for users to edit the names of the characters
-- Add a feature that automatically disables the clear button for a boss that is being skipped
 - Add an edit mode that shows/hides the ability to add, remove, edit characters
 - Make the "Clear/Not Done" button more visually distinguishable
 - Make the table have fixed width columns that don't change when the button updates
 - Replace the boss name headers with their png icons
 - Add character avatars to the table
+- Add a way for users to swap the order of characters
+- Add a way for users to export and import their character sheets
 
 Dailies:
 

@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import BossingCalculations from "./stats/container/BossingCalculations";
-import BossingTableEditor from "./table/container/BossingTableEditor";
+import BossingTableC from "./table/container/BossingTableC";
 
 function Bossing() {
   //localStorage.clear();
@@ -31,7 +31,7 @@ function Bossing() {
   return (
     <>
       <BossingCalculations charNames={charNames} charDifficulties={charDifficulties} charProgress={charProgress}/>
-      <BossingTableEditor
+      <BossingTableC
         charNames={charNames} setCharNames={setCharNames}
         charDifficulties={charDifficulties} setCharDifficulties={setCharDifficulties}
         charProgress={charProgress} setCharProgress={setCharProgress}/>

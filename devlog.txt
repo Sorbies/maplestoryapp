@@ -1,3 +1,7 @@
+2023-06-25:
+    - Refactored BossingTableEditor.js and BossingTable.js in order to move the functions into more categorized files
+      Thus, several new components were created for adding characters, deleting characters, changing progress, and changing difficulties.
+
 2023-06-23:
     - Added the ability to delete characters from the bossing table (new column in the table having the button)
     - Added the ability to manipulate the difficulties of the bosses that the characters do
