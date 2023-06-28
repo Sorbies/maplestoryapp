@@ -1,13 +1,17 @@
-import { bossPrices } from "../../BossingData";
-import BossingStats from "../presentational/BossingStats";
+import { useContext } from "react"; //hooks
+import { statesContext } from "../../Bossing"; //contexts
+import BossingStats from "../presentational/BossingStats"; //components
+import { bossPrices } from "../../BossingData"; //constants
 
 function BossingCalculations(props) {
+    const { charDifficulties, charProgress } = useContext(statesContext); //retrieve necessary states
+
     const calcCurrentIncome = () => {
         let income = 0;
-        for (let charIndex = 0; charIndex < props.charProgress.length; charIndex++) {
-            for (let bossIndex = 0; bossIndex < props.charProgress[charIndex].length; bossIndex++) {
-                let currDifficulty = props.charDifficulties[charIndex][bossIndex]
-                if (props.charProgress[charIndex][bossIndex]) {
+        for (let charIndex = 0; charIndex < charProgress.length; charIndex++) {
+            for (let bossIndex = 0; bossIndex < charProgress[charIndex].length; bossIndex++) {
+                let currDifficulty = charDifficulties[charIndex][bossIndex]
+                if (charProgress[charIndex][bossIndex]) {
                     income += bossPrices[bossIndex][currDifficulty];
                 }
             }
@@ -16,9 +20,9 @@ function BossingCalculations(props) {
     }
     const calcMaxIncome = () => {
         let income = 0;
-        for (let charIndex = 0; charIndex < props.charProgress.length; charIndex++) {
-            for (let bossIndex = 0; bossIndex < props.charProgress[charIndex].length; bossIndex++) {
-                let currDifficulty = props.charDifficulties[charIndex][bossIndex]
+        for (let charIndex = 0; charIndex < charProgress.length; charIndex++) {
+            for (let bossIndex = 0; bossIndex < charProgress[charIndex].length; bossIndex++) {
+                let currDifficulty = charDifficulties[charIndex][bossIndex]
                 if (currDifficulty > 1) {
                     income += bossPrices[bossIndex][currDifficulty];
                 }
@@ -28,9 +32,9 @@ function BossingCalculations(props) {
     }
     const countCurrentCrystals = () => {
         let count = 0;
-        for (let charIndex = 0; charIndex < props.charProgress.length; charIndex++) {
-            for (let bossIndex = 0; bossIndex < props.charProgress[charIndex].length; bossIndex++) {
-                if (props.charProgress[charIndex][bossIndex]) {
+        for (let charIndex = 0; charIndex < charProgress.length; charIndex++) {
+            for (let bossIndex = 0; bossIndex < charProgress[charIndex].length; bossIndex++) {
+                if (charProgress[charIndex][bossIndex]) {
                     count += 1;
                 }
             }
@@ -39,9 +43,9 @@ function BossingCalculations(props) {
     }
     const countMaxCrystals = () => {
         let count = 0;
-        for (let charIndex = 0; charIndex < props.charProgress.length; charIndex++) {
-            for (let bossIndex = 0; bossIndex < props.charProgress[charIndex].length; bossIndex++) {
-                let currDifficulty = props.charDifficulties[charIndex][bossIndex]
+        for (let charIndex = 0; charIndex < charProgress.length; charIndex++) {
+            for (let bossIndex = 0; bossIndex < charProgress[charIndex].length; bossIndex++) {
+                let currDifficulty = charDifficulties[charIndex][bossIndex]
                 if (currDifficulty > 1) {
                     count += 1;
                 }

@@ -1,9 +1,11 @@
-import { useState } from "react";
+import { useState, useContext } from "react";
+import { statesContext } from "../../../Bossing"; //states
 import AddCharP from "../presentational/AddCharP";
 
 function AddCharC(props) {
     //hooks
     const [newChar, setNewChar] = useState(""); //state hook for the new character
+    const { setCharNames, setCharDifficulties, setCharProgress } = useContext(statesContext);
 
     //variables
     const initialDifficulties = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //dummy initial difficulties
@@ -17,9 +19,9 @@ function AddCharC(props) {
 
     //Adds a new entry into all the states when user adds a new character
     const addNewChar = () => {
-        props.setCharNames((prev) => [...prev, newChar]);
-        props.setCharDifficulties((prev) => [...prev, initialDifficulties]);
-        props.setCharProgress((prev) => [...prev, initialProgress]);
+        setCharNames((prev) => [...prev, newChar]);
+        setCharDifficulties((prev) => [...prev, initialDifficulties]);
+        setCharProgress((prev) => [...prev, initialProgress]);
 
         setNewChar("");
     }

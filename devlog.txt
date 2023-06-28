@@ -1,3 +1,7 @@
+2023-06-28:
+    - Refactored basically all components in the bossing app to now access the three main states using context hooks rather than props
+      in order to solve prop drilling issue
+
 2023-06-25:
     - Refactored BossingTableEditor.js and BossingTable.js in order to move the functions into more categorized files
       Thus, several new components were created for adding characters, deleting characters, changing progress, and changing difficulties.

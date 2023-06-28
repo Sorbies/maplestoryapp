@@ -1,6 +1,9 @@
-import { useState, useEffect } from "react";
-import BossingCalculations from "./stats/container/BossingCalculations";
+import { useState, useEffect, createContext } from "react"; //hooks
+import BossingCalculations from "./stats/container/BossingCalculations"; //components
 import BossingTableC from "./table/container/BossingTableC";
+
+//This context will allow all components to access these main states
+export const statesContext = createContext();
 
 function Bossing() {
   //localStorage.clear();
@@ -28,14 +31,20 @@ function Bossing() {
   const [charDifficulties, setCharDifficulties] = usePersistingState("charDifficulties", []); //hook for char difficulties (boss difficulties that the char can run)
   const [charProgress, setCharProgress] = usePersistingState("charProgress", []) //hook for char progress (boss clear status for the week)
 
+  const statesData = {
+    charNames: charNames,
+    charDifficulties: charDifficulties,
+    charProgress: charProgress,
+    setCharNames: setCharNames,
+    setCharDifficulties: setCharDifficulties,
+    setCharProgress: setCharProgress
+  }
+
   return (
-    <>
-      <BossingCalculations charNames={charNames} charDifficulties={charDifficulties} charProgress={charProgress}/>
-      <BossingTableC
-        charNames={charNames} setCharNames={setCharNames}
-        charDifficulties={charDifficulties} setCharDifficulties={setCharDifficulties}
-        charProgress={charProgress} setCharProgress={setCharProgress}/>
-    </>
+    <statesContext.Provider value={statesData}>
+      <BossingCalculations/>
+      <BossingTableC/>
+    </statesContext.Provider>
   );
 }
 

@@ -1,15 +1,20 @@
-import DeleteCharP from "../presentational/DeleteCharP";
+import { useContext } from "react"; //hooks
+import { statesContext } from "../../../Bossing"; //states
+import DeleteCharP from "../presentational/DeleteCharP"; //components
 
 function DeleteCharC(props) {
+    const { charNames, charDifficulties, charProgress } = useContext(statesContext); //retrieve necessary states
+    const { setCharNames, setCharDifficulties, setCharProgress } = useContext(statesContext); //retrieve necessary states
+
     //Deletes an entry from the states when a user delets a character
     const deleteChar = (charIndex) => {
-        let newCharNames = props.charNames.filter((name, index) => index !== charIndex);
-        let newCharDifficulties = props.charDifficulties.filter((difficulties, index) => index !== charIndex);
-        let newCharProgress = props.charProgress.filter((progress, index) => index !== charIndex);
+        let newCharNames = charNames.filter((name, index) => index !== charIndex);
+        let newCharDifficulties = charDifficulties.filter((difficulties, index) => index !== charIndex);
+        let newCharProgress = charProgress.filter((progress, index) => index !== charIndex);
 
-        props.setCharNames(newCharNames);
-        props.setCharDifficulties(newCharDifficulties);
-        props.setCharProgress(newCharProgress);
+        setCharNames(newCharNames);
+        setCharDifficulties(newCharDifficulties);
+        setCharProgress(newCharProgress);
     }
 
     return (

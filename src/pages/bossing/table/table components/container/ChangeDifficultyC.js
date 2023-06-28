@@ -1,13 +1,17 @@
+import { useContext } from "react"; //hooks
+import { statesContext } from "../../../Bossing"; //states
 import ChangeDifficultyP from "../presentational/ChangeDifficultyP";
 
 function ChangeDifficultyC(props) {
 
+    const { charDifficulties, setCharDifficulties } = useContext(statesContext);
+
     //Updates the clear difficulty a character does for that boss
     const handleDifficulty = (difficulty, charIndex, bossIndex) => {
-        let newCharDifficulties = [...props.charDifficulties];
+        let newCharDifficulties = [...charDifficulties];
         newCharDifficulties[charIndex][bossIndex] = difficulty;
 
-        props.setCharDifficulties(newCharDifficulties);
+        setCharDifficulties(newCharDifficulties);
     }
 
     let symbol = "";
