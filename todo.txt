@@ -1,4 +1,5 @@
 Bossing:
+-FIGURE OUT WHY SWAP FUNCTIONS CAUSE ENDLESS EFFECT LOOP
 - Make the "Clear/Not Done" button more visually distinguishable
 - Make the table have fixed width columns that don't change when the button updates
 - Replace the boss name headers with their png icons

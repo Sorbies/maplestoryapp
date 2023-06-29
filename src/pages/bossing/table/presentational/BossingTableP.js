@@ -42,7 +42,7 @@ function BossingTableP(props) {
                                 <td key={"c" + charIndex}>
                                     <CharacterNameC charName={charName} charIndex={charIndex}/>
                                     <br/>
-                                    {editMode && <SwapPositionC/>}
+                                    {editMode && <SwapPositionC charIndex={charIndex}/>}
                                 </td>
 
                                 {/* The checkboxes */}

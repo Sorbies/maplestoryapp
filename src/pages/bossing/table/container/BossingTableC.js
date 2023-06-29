@@ -33,7 +33,18 @@ function BossingTableC(props) {
                 }
             }
         }
-    });
+    }, [charDifficulties]);
+    //effect hook that disables the up swap for the first character and the down swap for the last character
+    useEffect(() => {
+        console.log("disabling edge case swap buttons")
+        if (editMode) {
+            let firstButtonUp = document.getElementById("c" + 0 + "swapup");
+            let lastButtonDown = document.getElementById("c" + (charNames.length - 1) + "swapdown");
+    
+            firstButtonUp.setAttribute("disabled", true);
+            lastButtonDown.setAttribute("disabled", true);    
+        }
+    }, [editMode]);
 
     //functions
     const toggleEditing = () => {

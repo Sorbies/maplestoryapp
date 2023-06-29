@@ -1,0 +1,11 @@
+Changing States Using Clean Copies
+ - you don't want to directly modify states
+ - clone the state, then modify the clone, then set the state to the clone
+ - the spread operator is useful for this
+ - let newstate = oldstate; //does NOT create a clean copy. it's a shallow copy
+
+Handler functions
+ - <tag onClick={handlerfunction}/> vs <tag onClick={ () => handlerfunction }/>
+ - the difference between the former and the latter is that handlerfunction gets
+   called first and then is assigned in the former. In the latter, handlerfunction
+   gets called only on the event and never gets called immediately.

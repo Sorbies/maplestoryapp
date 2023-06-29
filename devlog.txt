@@ -1,7 +1,8 @@
 2023-06-29:
     - Added in edit mode, which hides the difficulty modes/delete column/add character sections of the table if disabled
     - Added ability to change character names inside of character mode
-    - Started creating swap position buttons in edit mode
+    - Created swap position functionality in edit mode
+    - Fixed my notation when passing functions to JSX that was causing code to execute more than intended
 
 2023-06-28:
     - Refactored basically all components in the bossing app to now access the three main states using context hooks rather than props
