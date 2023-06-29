@@ -3,9 +3,11 @@ import { statesContext } from "../../../Bossing"; //states
 import DeleteCharP from "../presentational/DeleteCharP"; //components
 
 function DeleteCharC(props) {
+    //states
     const { charNames, charDifficulties, charProgress } = useContext(statesContext); //retrieve necessary states
     const { setCharNames, setCharDifficulties, setCharProgress } = useContext(statesContext); //retrieve necessary states
 
+    //functions
     //Deletes an entry from the states when a user delets a character
     const deleteChar = (charIndex) => {
         let newCharNames = charNames.filter((name, index) => index !== charIndex);

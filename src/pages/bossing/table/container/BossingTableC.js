@@ -4,21 +4,23 @@ import BossingTableP from "../presentational/BossingTableP"; //components
 import { bosses } from "../../BossingData"; //constants
 
 function BossingTableC(props) {
-    const { charNames, charDifficulties } = useContext(statesContext);
+    //states
+    const { charNames, charDifficulties, editMode, setEditMode } = useContext(statesContext);
 
-    //effect hook that disables buttons for invalid boss difficulties when new characters are added
+    //hooks
+    //effect hook that disables buttons for invalid boss difficulties when new characters are added or when edit mode is turned on
     useEffect(() => {
         for (let charIndex = 0; charIndex < charNames.length; charIndex++) {
             for (let bossIndex = 0; bossIndex < charDifficulties[charIndex].length; bossIndex++) {
                 for (let difficulty = 1; difficulty <= 5; difficulty++) {
                     if (bosses[bossIndex][difficulty] === 0) {
                         let button = document.getElementById("c" + charIndex + "b" + bossIndex + "d" + difficulty);
-                        button.setAttribute("hidden", true);
+                        if (button != null) button.setAttribute("hidden", true);
                     }
                 }
             }
         }
-    }, [charNames]);
+    }, [charNames, editMode]);
     //effect hook that disables the clear status button for skipped bosses
     useEffect(() => {
         for (let charIndex = 0; charIndex < charNames.length; charIndex++) {
@@ -33,9 +35,39 @@ function BossingTableC(props) {
         }
     });
 
+    //functions
+    const toggleEditing = () => {
+        setEditMode((prev) => !prev);
+    }
+
+    //Turns the number from charDifficulties into English
+    const translateDifficulty = (difficulty) => {
+        let answer = "Error";
+        switch (difficulty) {
+            case 1:
+                answer = "Skip";
+                break;
+            case 2:
+                answer = "Easy";
+                break;
+            case 3:
+                answer = "Normal";
+                break;
+            case 4:
+                answer = "Hard";
+                break;
+            case 5:
+                answer = "Extreme";
+                break;
+            default:
+                answer = "Error";
+        }
+        return answer;
+    }
+
     return (
         <>
-            <BossingTableP/>
+            <BossingTableP toggleEditing={toggleEditing} translateDifficulty={translateDifficulty}/>
         </>
 
     )

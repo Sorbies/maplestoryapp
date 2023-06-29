@@ -4,8 +4,13 @@ import ChangeDifficultyP from "../presentational/ChangeDifficultyP";
 
 function ChangeDifficultyC(props) {
 
+    //states
     const { charDifficulties, setCharDifficulties } = useContext(statesContext);
 
+    //variables
+    let symbol;
+
+    //functions
     //Updates the clear difficulty a character does for that boss
     const handleDifficulty = (difficulty, charIndex, bossIndex) => {
         let newCharDifficulties = [...charDifficulties];
@@ -14,7 +19,7 @@ function ChangeDifficultyC(props) {
         setCharDifficulties(newCharDifficulties);
     }
 
-    let symbol = "";
+    //script
     switch (props.difficulty) {
         case 1:
             symbol = "∅";

@@ -3,41 +3,24 @@ import { statesContext } from "../../Bossing";
 import AddCharC from "../table components/container/AddCharC";
 import ChangeDifficultyC from "../table components/container/ChangeDifficultyC";
 import ChangeProgressC from "../table components/container/ChangeProgressC";
+import CharacterNameC from "../table components/container/CharacterNameC";
 import DeleteCharC from "../table components/container/DeleteCharC";
+import SwapPositionC from "../table components/container/SwapPositionC";
 import { bosses } from "../../BossingData";
 
 function BossingTableP(props) {
-    const { charNames, charDifficulties } = useContext(statesContext);
+    //states
+    const { charNames, charDifficulties, editMode } = useContext(statesContext);
 
-    //Turns the number from charDifficulties into English
-    const translateDifficulty = (difficulty) => {
-        let answer = "Error";
-        switch (difficulty) {
-            case 1:
-                answer = "Skip";
-                break;
-            case 2:
-                answer = "Easy";
-                break;
-            case 3:
-                answer = "Normal";
-                break;
-            case 4:
-                answer = "Hard";
-                break;
-            case 5:
-                answer = "Extreme";
-                break;
-            default:
-                answer = "Error";
-        }
-        return answer;
-    }
+    //functions
+
 
     return (
         <>
             {/* Edit button */}
-            <button>Edit</button>
+            <button onClick={props.toggleEditing}>
+                {editMode ? "Disable Edit Mode" : "Enable Edit Mode"}
+            </button>
             <table>
 
                 <thead>
@@ -45,7 +28,7 @@ function BossingTableP(props) {
                     <tr>
                         <th>Character</th>
                         {bosses.map((boss, index) => <th key={"boss" + index}>{boss[0]}</th>)}
-                        <th>Delete</th>
+                        {editMode && <th>Delete</th>}
                     </tr>
                 </thead>
 
@@ -56,28 +39,35 @@ function BossingTableP(props) {
                         return (
                             <tr key={"row" + charIndex}>
                                 {/* The character name */}
-                                <td key={"c" + charIndex}>{charName}</td>
+                                <td key={"c" + charIndex}>
+                                    <CharacterNameC charName={charName} charIndex={charIndex}/>
+                                    <br/>
+                                    {editMode && <SwapPositionC/>}
+                                </td>
 
                                 {/* The checkboxes */}
                                 {charDifficulties[charIndex].map((difficulty, bossIndex) => {
                                     return (
                                         <td key={"c" + charIndex + "b" + bossIndex}>
-                                            {translateDifficulty(difficulty)} <br />
-                                            <ChangeProgressC charIndex={charIndex} bossIndex={bossIndex}/>
+                                            {props.translateDifficulty(difficulty)} <br />
+                                            <ChangeProgressC charIndex={charIndex} bossIndex={bossIndex} />
                                             <br />
-                                            <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={1}/>
-                                            <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={2}/>
-                                            <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={3}/>
-                                            <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={4}/>
-                                            <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={5}/>
+                                            {editMode && <>
+                                                <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={1} />
+                                                <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={2} />
+                                                <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={3} />
+                                                <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={4} />
+                                                <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={5} /></>}
+
+
                                         </td>
                                     )
                                 })}
 
                                 {/* The delete button */}
-                                <td>
+                                {editMode && <td>
                                     <DeleteCharC charIndex={charIndex} />
-                                </td>
+                                </td>}
 
 
                             </tr>
@@ -86,7 +76,7 @@ function BossingTableP(props) {
                 </tbody>
 
             </table>
-            <AddCharC/>
+            {editMode && <div><AddCharC /></div>}
         </>
     );
 }
