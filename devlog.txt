@@ -1,3 +1,6 @@
+2023-07-04:
+    - Made ChangeProgressP buttons use states and effect hooks
+
 2023-07-03:
     - Did a little bit of styling
     - Moved edit button out into its own component

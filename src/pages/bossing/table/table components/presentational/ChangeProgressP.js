@@ -1,29 +1,35 @@
+import { useState, useEffect, useContext } from "react";
+import { statesContext } from "../../../Bossing";
 import styles from "../style/ChangeProgressP.module.css";
 
 function ChangeProgressP(props) {
+    const { charProgress, presetMode } = useContext(statesContext);
+    const [style, setStyle] = useState(null)
+    const [buttonText, setButtonText] = useState("D");
 
     //variables
     const id = "c" + props.charIndex + "b" + props.bossIndex + "button";
     const button = document.getElementById(id);
-    let style = styles.btn + " "; //default styling
-    let buttonText = "";
-    let isDisabled;
 
-    //scripts
-    if (button != null) {
-        isDisabled = button.hasAttribute("disabled");
-
-        if (isDisabled) { //determine extra styling
-            style += styles.disabled;
-            buttonText = "Disabled";
-        } else {
-            style += props.isDone ? styles.clear : styles.notDone;
-            buttonText = props.isDone ? "Clear" : "Not Done"; //determine text
+    useEffect(() => {
+        if (button != null) {
+            let isDisabled = button.hasAttribute("disabled");
+            let newStyle = styles.btn + " ";
+            if (isDisabled) {
+                newStyle += styles.disabled;
+                setStyle(newStyle);
+                setButtonText("Disabled");
+            } else {
+                newStyle += props.isDone ? styles.clear : styles.notDone;
+                setStyle(newStyle);
+                setButtonText(props.isDone ? "Clear" : "Not Done");    
+            }
         }
-    }
+    }, [charProgress, presetMode]);
+
 
     return (
-        <button type="button" key={id} id={id} className={style}
+        <button type="button" key={id} id={id} className={style} 
             onClick={() => props.handleCharProgress(props.charIndex, props.bossIndex)}>
             {buttonText}
         </button>

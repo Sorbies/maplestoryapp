@@ -37,14 +37,7 @@ function Bossing() {
   const [presets, setPresets] = usePersistingState("presets", []); //hook for storing presets
   const [editMode, setEditMode] = useState(false);
   const [presetMode, setPresetMode] = useState(false);
-
-  //This is a dummy state that doesn't really do anything. Its only purpose is to be changed
-  //so I can force a component to re-render. It was a workaround to a problem I had with CSS
-  //not applying to BossingTableC when presetMode was toggled back, until another state changed.
-  const [forceUpdate, setForceUpdate] = useState(false);
-  useEffect(() => {
-    setForceUpdate((prev) => !prev);
-  }, [presetMode]);
+  const [forceUpdate, setForceUpdate] = useState(false); //doesn't store info. dummy state for triggering refreshes
 
   //context holder
   const statesData = {
@@ -61,6 +54,8 @@ function Bossing() {
     setPresets: setPresets,
     setEditMode: setEditMode,
     setPresetMode: setPresetMode,
+
+    setForceUpdate: setForceUpdate
   }
 
   return (
