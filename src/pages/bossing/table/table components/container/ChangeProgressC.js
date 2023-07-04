@@ -1,6 +1,6 @@
 import { useContext } from "react"; //hooks
 import { statesContext } from "../../../Bossing"; //states
-import ChangeProgressP from "../presentational/ChangeProgressP";
+import ChangeProgressP from "../presentational/ChangeProgressP"; //css
 
 function ChangeProgressC(props) {
     //states
@@ -15,7 +15,8 @@ function ChangeProgressC(props) {
     }
 
     return (
-        <ChangeProgressP charIndex={props.charIndex} bossIndex={props.bossIndex} handleCharProgress={handleCharProgress}/>
+        <ChangeProgressP charIndex={props.charIndex} bossIndex={props.bossIndex} handleCharProgress={handleCharProgress}
+                         isDone={charProgress[props.charIndex][props.bossIndex]}/>
     );
 }
 

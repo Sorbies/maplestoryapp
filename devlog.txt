@@ -1,3 +1,8 @@
+2023-07-03:
+    - Added conditional background color for the progress buttons
+    - Changed the font of the whole app (index.js)
+    - Added a table border
+
 2023-06-29:
     - Added in edit mode, which hides the difficulty modes/delete column/add character sections of the table if disabled
     - Added ability to change character names inside of character mode

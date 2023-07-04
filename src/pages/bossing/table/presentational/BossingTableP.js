@@ -1,12 +1,13 @@
-import { useContext } from "react";
+import { useContext } from "react"; //hooks
 import { statesContext } from "../../Bossing";
-import AddCharC from "../table components/container/AddCharC";
+import AddCharC from "../table components/container/AddCharC"; //components
 import ChangeDifficultyC from "../table components/container/ChangeDifficultyC";
 import ChangeProgressC from "../table components/container/ChangeProgressC";
 import CharacterNameC from "../table components/container/CharacterNameC";
 import DeleteCharC from "../table components/container/DeleteCharC";
 import SwapPositionC from "../table components/container/SwapPositionC";
-import { bosses } from "../../BossingData";
+import { bosses } from "../../BossingData"; //constants
+import "../style/BossingTableP.module.css"; //styles
 
 function BossingTableP(props) {
     //states
