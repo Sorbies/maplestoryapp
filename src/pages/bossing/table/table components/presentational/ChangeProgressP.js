@@ -15,11 +15,11 @@ function ChangeProgressP(props) {
 
         if (isDisabled) { //determine extra styling
             style += styles.disabled;
+            buttonText = "Disabled";
         } else {
             style += props.isDone ? styles.clear : styles.notDone;
+            buttonText = props.isDone ? "Clear" : "Not Done"; //determine text
         }
-    
-        buttonText = props.isDone ? "Clear" : "Not Done"; //determine text
     }
 
     return (

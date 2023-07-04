@@ -1,7 +1,9 @@
 2023-07-03:
-    - Added conditional background color for the progress buttons
-    - Changed the font of the whole app (index.js)
-    - Added a table border
+    - Did a little bit of styling
+    - Moved edit button out into its own component
+    - Disabled buttons now read "Disabled"
+    - Created a preset mode (does nothing for now) and a way to toggle it, replacing the character sheet with a diff component
+    - Solved a CSS bug that arose from conditional rendering of a component based on presetMode. Led to creating a dummy state to force updates
 
 2023-06-29:
     - Added in edit mode, which hides the difficulty modes/delete column/add character sections of the table if disabled

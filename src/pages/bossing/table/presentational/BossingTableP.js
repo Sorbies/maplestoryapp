@@ -15,13 +15,9 @@ function BossingTableP(props) {
 
     //functions
 
-
     return (
         <>
-            {/* Edit button */}
-            <button onClick={props.toggleEditing}>
-                {editMode ? "Disable Edit Mode" : "Enable Edit Mode"}
-            </button>
+            <br/>
             <table>
 
                 <thead>

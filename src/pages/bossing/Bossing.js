@@ -1,6 +1,8 @@
 import { useState, useEffect, createContext } from "react"; //hooks
 import BossingCalculations from "./stats/container/BossingCalculations"; //components
 import BossingTableC from "./table/container/BossingTableC";
+import PresetTableC from "./presets/container/PresetTableC";
+import ModeControlC from "./mode controls/container/ModeControlC";
 
 //This context will allow all components to access these main states
 export const statesContext = createContext();
@@ -8,6 +10,7 @@ export const statesContext = createContext();
 function Bossing() {
   //localStorage.clear();
 
+  //hooks
   //This custom hook sets up a state that can remember what it was through refreshes of the app.
   //stateName: must be the string of the intended stateName, for localStorage key making
   //defaultValue: the value to init state with should there be no pre-existing localStorage
@@ -27,26 +30,40 @@ function Bossing() {
     return [someState, setSomeState]
   }
 
+  //states
   const [charNames, setCharNames] = usePersistingState("charNames", []); //hook for char names
   const [charDifficulties, setCharDifficulties] = usePersistingState("charDifficulties", []); //hook for char difficulties (boss difficulties that the char can run)
   const [charProgress, setCharProgress] = usePersistingState("charProgress", []) //hook for char progress (boss clear status for the week)
   const [editMode, setEditMode] = useState(false);
+  const [presetMode, setPresetMode] = useState(false);
 
+  //This is a dummy state that doesn't really do anything. Its only purpose is to be changed
+  //so I can force a component to re-render. It was a workaround to a problem I had with CSS
+  //not applying to BossingTableC when presetMode was toggled back, until another state changed.
+  const [forceUpdate, setForceUpdate] = useState(false);
+  useEffect(() => {
+    setForceUpdate((prev) => !prev);
+  }, [presetMode]);
+
+  //context holder
   const statesData = {
     charNames: charNames,
     charDifficulties: charDifficulties,
     charProgress: charProgress,
     editMode: editMode,
+    presetMode: presetMode,
     setCharNames: setCharNames,
     setCharDifficulties: setCharDifficulties,
     setCharProgress: setCharProgress,
-    setEditMode: setEditMode
+    setEditMode: setEditMode,
+    setPresetMode: setPresetMode
   }
 
   return (
     <statesContext.Provider value={statesData}>
       <BossingCalculations/>
-      <BossingTableC/>
+      <ModeControlC/>
+      {presetMode ? <PresetTableC/> : <BossingTableC/>}
     </statesContext.Provider>
   );
 }

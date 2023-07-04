@@ -5,7 +5,7 @@ import { bosses } from "../../BossingData"; //constants
 
 function BossingTableC(props) {
     //states
-    const { charNames, charDifficulties, editMode, setEditMode } = useContext(statesContext);
+    const { charNames, charDifficulties, editMode } = useContext(statesContext);
 
     //hooks
     //effect hook that disables buttons for invalid boss difficulties when new characters are added or when edit mode is turned on
@@ -47,9 +47,7 @@ function BossingTableC(props) {
     }, [editMode]);
 
     //functions
-    const toggleEditing = () => {
-        setEditMode((prev) => !prev);
-    }
+
 
     //Turns the number from charDifficulties into English
     const translateDifficulty = (difficulty) => {
@@ -78,7 +76,7 @@ function BossingTableC(props) {
 
     return (
         <>
-            <BossingTableP toggleEditing={toggleEditing} translateDifficulty={translateDifficulty}/>
+            <BossingTableP translateDifficulty={translateDifficulty}/>
         </>
 
     )

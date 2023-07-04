@@ -9,3 +9,6 @@ Handler functions
  - the difference between the former and the latter is that handlerfunction gets
    called first and then is assigned in the former. In the latter, handlerfunction
    gets called only on the event and never gets called immediately.
+
+Questions
+ - When I was unmounting BossingTableC and then remounting it (due to presetMode), why does the CSS not take effect until a state change?
