@@ -12,3 +12,4 @@ Handler functions
 
 Questions
  - When I was unmounting BossingTableC and then remounting it (due to presetMode), why does the CSS not take effect until a state change?
+   Also see the CSS not updating with the progress button changes

@@ -26,10 +26,12 @@ function BossingTableC(props) {
         for (let charIndex = 0; charIndex < charNames.length; charIndex++) {
             for (let bossIndex = 0; bossIndex < charDifficulties[charIndex].length; bossIndex++) {
                 let button = document.getElementById("c" + charIndex + "b" + bossIndex + "button");
-                if (charDifficulties[charIndex][bossIndex] === 1) {
-                    button.setAttribute("disabled", true);
-                } else {
-                    button.removeAttribute("disabled");
+                if (button != null) {
+                    if (charDifficulties[charIndex][bossIndex] === 1) {
+                        button.setAttribute("disabled", true);
+                    } else {
+                        button.removeAttribute("disabled");
+                    }
                 }
             }
         }
@@ -40,9 +42,11 @@ function BossingTableC(props) {
         if (editMode) {
             let firstButtonUp = document.getElementById("c" + 0 + "swapup");
             let lastButtonDown = document.getElementById("c" + (charNames.length - 1) + "swapdown");
-    
-            firstButtonUp.setAttribute("disabled", true);
-            lastButtonDown.setAttribute("disabled", true);    
+
+            if (firstButtonUp != null && lastButtonDown != null) {
+                firstButtonUp.setAttribute("disabled", true);
+                lastButtonDown.setAttribute("disabled", true);
+            }
         }
     }, [editMode]);
 
@@ -76,7 +80,7 @@ function BossingTableC(props) {
 
     return (
         <>
-            <BossingTableP translateDifficulty={translateDifficulty}/>
+            <BossingTableP translateDifficulty={translateDifficulty} />
         </>
 
     )
