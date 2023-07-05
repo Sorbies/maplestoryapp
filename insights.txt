@@ -10,6 +10,9 @@ Handler functions
    called first and then is assigned in the former. In the latter, handlerfunction
    gets called only on the event and never gets called immediately.
 
-Questions
+Effect Hook, CSS, Delayed Rendering
  - When I was unmounting BossingTableC and then remounting it (due to presetMode), why does the CSS not take effect until a state change?
    Also see the CSS not updating with the progress button changes
+ - Trying to access the DOM in an effect hook may result in things not happening in the order you expect them.
+ - Instead of checking things about the DOM, try to see if you can reprogram your code to be based on the states you used to customize the DOM.
+   (Keep it inside the app.)

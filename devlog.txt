@@ -1,5 +1,6 @@
 2023-07-04:
     - Made ChangeProgressP buttons use states and effect hooks
+    - FIXED THE CSS DELAYED RENDERING THING!
 
 2023-07-03:
     - Did a little bit of styling

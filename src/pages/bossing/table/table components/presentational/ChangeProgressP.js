@@ -3,20 +3,17 @@ import { statesContext } from "../../../Bossing";
 import styles from "../style/ChangeProgressP.module.css";
 
 function ChangeProgressP(props) {
-    const { charProgress, presetMode } = useContext(statesContext);
+    const { charProgress, charDifficulties, presetMode } = useContext(statesContext);
     const [style, setStyle] = useState(styles.btn);
     const [buttonText, setButtonText] = useState("Default");
 
     //variables
     const id = "c" + props.charIndex + "b" + props.bossIndex + "button";
-    const button = document.getElementById(id);
 
     //TODO: this effect does happen after disabling presetMode. but still, the style doesn't change. why?
     useEffect(() => {
-        if (button != null) {
-            let isDisabled = button.hasAttribute("disabled");
             let newStyle = styles.btn + " ";
-            if (isDisabled) {
+            if (charDifficulties[props.charIndex][props.bossIndex] === 1) {
                 newStyle += styles.disabled;
                 setStyle(newStyle);
                 setButtonText("Disabled");
@@ -25,8 +22,7 @@ function ChangeProgressP(props) {
                 setStyle(newStyle);
                 setButtonText(props.isDone ? "Clear" : "Not Done");   
             }
-        }
-    }, [charProgress, button, presetMode, props.isDone]);
+    }, [charProgress, charDifficulties, presetMode, props.isDone]);
 
 
     return (
