@@ -10,6 +10,8 @@ export const statesContext = createContext();
 function Bossing() {
   //localStorage.clear();
 
+  //Global stuff
+  //******************** */
   //hooks
   //This custom hook sets up a state that can remember what it was through refreshes of the app.
   //stateName: must be the string of the intended stateName, for localStorage key making
@@ -26,7 +28,7 @@ function Bossing() {
     //update local storage for someState whenever a change in someState is detected
     useEffect(() => {
       localStorage.setItem(stateName, JSON.stringify(someState));
-    }, [someState]);
+    }, [stateName, someState]);
     return [someState, setSomeState]
   }
 
@@ -37,7 +39,6 @@ function Bossing() {
   const [presets, setPresets] = usePersistingState("presets", []); //hook for storing presets
   const [editMode, setEditMode] = useState(false);
   const [presetMode, setPresetMode] = useState(false);
-  const [forceUpdate, setForceUpdate] = useState(false); //doesn't store info. dummy state for triggering refreshes
 
   //context holder
   const statesData = {
@@ -55,14 +56,22 @@ function Bossing() {
     setEditMode: setEditMode,
     setPresetMode: setPresetMode,
 
-    setForceUpdate: setForceUpdate
+    usePersistingState: usePersistingState
   }
+  //******************** */
+
+  //not global stuff
+  const [content, setContent] = useState(null);
+  useEffect(() => {
+    let newContent = presetMode ? <PresetTableC/> : <BossingTableC/>;
+    setContent(newContent);
+  }, [presetMode]);
 
   return (
     <statesContext.Provider value={statesData}>
       <BossingCalculations/>
       <ModeControlC/>
-      {presetMode ? <PresetTableC/> : <BossingTableC/>}
+      {content}
     </statesContext.Provider>
   );
 }

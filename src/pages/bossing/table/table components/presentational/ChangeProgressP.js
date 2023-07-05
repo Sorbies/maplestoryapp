@@ -4,13 +4,14 @@ import styles from "../style/ChangeProgressP.module.css";
 
 function ChangeProgressP(props) {
     const { charProgress, presetMode } = useContext(statesContext);
-    const [style, setStyle] = useState(null)
-    const [buttonText, setButtonText] = useState("D");
+    const [style, setStyle] = useState(styles.btn);
+    const [buttonText, setButtonText] = useState("Default");
 
     //variables
     const id = "c" + props.charIndex + "b" + props.bossIndex + "button";
     const button = document.getElementById(id);
 
+    //TODO: this effect does happen after disabling presetMode. but still, the style doesn't change. why?
     useEffect(() => {
         if (button != null) {
             let isDisabled = button.hasAttribute("disabled");
@@ -22,10 +23,10 @@ function ChangeProgressP(props) {
             } else {
                 newStyle += props.isDone ? styles.clear : styles.notDone;
                 setStyle(newStyle);
-                setButtonText(props.isDone ? "Clear" : "Not Done");    
+                setButtonText(props.isDone ? "Clear" : "Not Done");   
             }
         }
-    }, [charProgress, presetMode]);
+    }, [charProgress, button, presetMode, props.isDone]);
 
 
     return (

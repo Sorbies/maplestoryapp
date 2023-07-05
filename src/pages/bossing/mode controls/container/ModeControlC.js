@@ -3,7 +3,7 @@ import { statesContext } from "../../Bossing"; //states
 import ModeControlP from "../presentational/ModeControlP"; //components
 
 function ModeControlC(props) {
-    const { setEditMode, setPresetMode, setForceUpdate } = useContext(statesContext);
+    const { setEditMode, setPresetMode } = useContext(statesContext);
 
     //functions
     const toggleEditing = () => {
