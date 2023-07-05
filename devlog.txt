@@ -1,3 +1,7 @@
+2023-07-05:
+    - Moved the ChangeProgressP logic into ChangeProgressC
+    - Applied the css to all my buttons
+
 2023-07-04:
     - Made ChangeProgressP buttons use states and effect hooks
     - FIXED THE CSS DELAYED RENDERING THING!

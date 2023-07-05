@@ -1,7 +1,12 @@
+import styles from "../style/buttons.module.css";
+
 function AddCharP(props) {
+    const style = styles.normal;
+
     return (
         <>
-            Add a new character: <input type="text" value={props.newChar} onChange={props.handleNewChar} /> <button onClick={props.addNewChar}>Add</button>
+            Add a new character: <input type="text" className={style} value={props.newChar} onChange={props.handleNewChar} /> 
+            <button onClick={props.addNewChar} className={style}>Add</button>
         </>
     )
 }

@@ -1,17 +1,19 @@
 import { useContext } from "react";
 import { statesContext } from "../../Bossing";
+import styles from "../../table/table components/style/buttons.module.css";
 
 function ModeControlP(props) {
     const { editMode, presetMode } = useContext(statesContext);
+    const style = styles.normal;
 
     return (
         <>
             {/* Edit button */}
-            <button onClick={() => props.toggleEditing()}>
+            <button className={style} onClick={() => props.toggleEditing()}>
                 {editMode ? "Disable Edit Mode" : "Enable Edit Mode"}
             </button>
             {/* Preset button */}
-            <button onClick={() => props.togglePreset()}>
+            <button className={style} onClick={() => props.togglePreset()}>
                 {presetMode ? "Return to Character Sheet" : "Edit Presets"}
             </button>
         </>

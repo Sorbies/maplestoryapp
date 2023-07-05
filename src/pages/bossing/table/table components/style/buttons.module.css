@@ -1,21 +1,28 @@
-@import url('https://fonts.googleapis.com/css2?family=Quicksand:wght@300&display=swap');
-
 .btn {
     width: 100%;
     height: 100%;
 }
 
+.normal {
+    background-color: floralwhite;
+    border-color: rgb(53, 53, 53);
+    color: black;
+}
+
 .clear {
     background-color: lightgreen;
     border-color: seagreen;
+    color: rgb(23, 68, 42);
 }
 
 .notDone {
     background-color: lightcoral;
     border-color: darkred;
+    color: rgb(66, 1, 1);
 }
 
 .disabled {
     background-color: darkgray;
     border-color: dimgray;
+    color: dimgray;
 }
