@@ -7,25 +7,27 @@ import CharacterNameC from "../table components/container/CharacterNameC";
 import DeleteCharC from "../table components/container/DeleteCharC";
 import SwapPositionC from "../table components/container/SwapPositionC";
 import { bosses } from "../../BossingData"; //constants
-import "../style/BossingTableP.module.css"; //styles
+import styles from "../style/tables.module.css"; //styles
 
 function BossingTableP(props) {
     //states
     const { charNames, charDifficulties, editMode } = useContext(statesContext);
+    
+    const tableStyle = styles.table;
 
     //functions
 
     return (
         <>
             <br/>
-            <table>
+            <table className={tableStyle}>
 
                 <thead>
                     {/* Creates the header row of boss names */}
                     <tr>
-                        <th>Character</th>
-                        {bosses.map((boss, index) => <th key={"boss" + index}>{boss[0]}</th>)}
-                        {editMode && <th>Delete</th>}
+                        <th className={tableStyle}>Character</th>
+                        {bosses.map((boss, index) => <th  className={tableStyle} key={"boss" + index}>{boss[0]}</th>)}
+                        {editMode && <th className={tableStyle}>Delete</th>}
                     </tr>
                 </thead>
 
@@ -36,7 +38,7 @@ function BossingTableP(props) {
                         return (
                             <tr key={"row" + charIndex}>
                                 {/* The character name */}
-                                <td key={"c" + charIndex}>
+                                <td  className={tableStyle} key={"c" + charIndex}>
                                     <CharacterNameC charName={charName} charIndex={charIndex}/>
                                     <br/>
                                     {editMode && <SwapPositionC charIndex={charIndex}/>}
@@ -45,7 +47,7 @@ function BossingTableP(props) {
                                 {/* The checkboxes */}
                                 {charDifficulties[charIndex].map((difficulty, bossIndex) => {
                                     return (
-                                        <td key={"c" + charIndex + "b" + bossIndex}>
+                                        <td  className={tableStyle} key={"c" + charIndex + "b" + bossIndex}>
                                             {props.translateDifficulty(difficulty)} <br />
                                             <ChangeProgressC charIndex={charIndex} bossIndex={bossIndex} />
                                             <br />
@@ -62,7 +64,7 @@ function BossingTableP(props) {
                                 })}
 
                                 {/* The delete button */}
-                                {editMode && <td>
+                                {editMode && <td className={tableStyle} >
                                     <DeleteCharC charIndex={charIndex} />
                                 </td>}
 

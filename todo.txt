@@ -3,11 +3,8 @@ Bossing:
 - Add character avatars to the table
 - Add a way for users to swap the order of characters
 - Add a way for users to export and import their character sheets
-- Add presets
-- Fix the change progess p button being delayed for some reason
-    Idea: maybe the states are just being overriden by their default values when the component is mounted again. perhaps this information needs to persist in memory?
-    Using persisting state did make it reload with something different from default values, but it was all in the not done state.
-    since the state is shared across all instances of the component, this information might need to be passed as a prop or require arrays
+- Connect presets to char table
+- Refactor the app to use don's layers strat, then try to merge components that apply to both presets and bossingtable
 
 Dailies:
 

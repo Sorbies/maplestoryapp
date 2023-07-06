@@ -25,7 +25,7 @@ function ChangeProgressC(props) {
             setStyle(newStyle);
             setButtonText(isDone ? "Clear" : "Not Done");
         }
-    }, [charProgress, charDifficulties, presetMode, isDone]);
+    }, [charProgress, charDifficulties, presetMode, isDone, props.charIndex, props.bossIndex]);
 
     //functions
     //This function will allow updating the clear status of the character's bosses.

@@ -1,6 +1,8 @@
 2023-07-05:
     - Moved the ChangeProgressP logic into ChangeProgressC
-    - Applied the css to all my buttons
+    - Applied the css to all my buttons except SwapPositionP
+    - Fixed a bug with not being able to update character names (it had to do with () => in the handleNameChange)
+    - Added ability to make presets. Can't do anything with them yet though
 
 2023-07-04:
     - Made ChangeProgressP buttons use states and effect hooks

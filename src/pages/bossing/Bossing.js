@@ -37,6 +37,7 @@ function Bossing() {
   const [charDifficulties, setCharDifficulties] = usePersistingState("charDifficulties", []); //hook for char difficulties (boss difficulties that the char can run)
   const [charProgress, setCharProgress] = usePersistingState("charProgress", []) //hook for char progress (boss clear status for the week)
   const [presets, setPresets] = usePersistingState("presets", []); //hook for storing presets
+  const [presetNames, setPresetNames] = usePersistingState("presetNames", []); //hook for storing preset names
   const [editMode, setEditMode] = useState(false);
   const [presetMode, setPresetMode] = useState(false);
 
@@ -46,6 +47,7 @@ function Bossing() {
     charDifficulties: charDifficulties,
     charProgress: charProgress,
     presets: presets,
+    presetNames: presetNames,
     editMode: editMode,
     presetMode: presetMode,
 
@@ -53,6 +55,7 @@ function Bossing() {
     setCharDifficulties: setCharDifficulties,
     setCharProgress: setCharProgress,
     setPresets: setPresets,
+    setPresetNames: setPresetNames,
     setEditMode: setEditMode,
     setPresetMode: setPresetMode,
 
