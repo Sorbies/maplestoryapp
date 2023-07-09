@@ -1,7 +1,7 @@
 import styles from "../style/buttons.module.css";
 
 function AddCharP(props) {
-    const style = styles.normal;
+    const style = styles.btn + " " + styles.normal;
 
     return (
         <>

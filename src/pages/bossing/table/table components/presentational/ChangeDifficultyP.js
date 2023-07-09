@@ -1,7 +1,7 @@
 import styles from "../style/buttons.module.css";
 
 function ChangeDifficultyP(props) {
-    const style = styles.normal;
+    const style = styles.btn + " " + styles.normal;
 
     return (
         <button type="button" key={"c" + props.charIndex + "b" + props.bossIndex + "d" + props.difficulty}

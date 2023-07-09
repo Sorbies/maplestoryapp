@@ -9,7 +9,7 @@ import styles from "../../table/style/tables.module.css";//styles
 
 
 function PresetTableP(props) {
-    const { presets, presetNames, editMode } = useContext(statesContext);
+    const { presets, presetNames } = useContext(statesContext);
 
     const tableStyle = styles.table;
 
@@ -41,7 +41,7 @@ function PresetTableP(props) {
                                 {presets[presetIndex].map((difficulty, bossIndex) => {
                                     return (
                                         <td  className={tableStyle} key={"p" + presetIndex + "b" + bossIndex}>
-                                            {props.translateDifficulty(difficulty)} <br />
+                                            {props.translateDifficulty(difficulty)}
                                             <br />
                                             <ChangeDifficultyC presetIndex={presetIndex} bossIndex={bossIndex} difficulty={1} />
                                             <ChangeDifficultyC presetIndex={presetIndex} bossIndex={bossIndex} difficulty={2} />

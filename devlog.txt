@@ -1,3 +1,8 @@
+2023-07-09:
+    - Added cursor attribute to buttons
+    - Added new state, charPresets, that tracks which preset each character is using
+    - Added way to display presets as buttons in order to allow user to set the active preset for each character
+
 2023-07-05:
     - Moved the ChangeProgressP logic into ChangeProgressC
     - Applied the css to all my buttons except SwapPositionP

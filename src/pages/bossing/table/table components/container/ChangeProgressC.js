@@ -17,7 +17,7 @@ function ChangeProgressC(props) {
     useEffect(() => {
         let newStyle = styles.btn + " ";
         if (charDifficulties[props.charIndex][props.bossIndex] === 1) {
-            newStyle += styles.disabled;
+            newStyle = styles.disabled; //do Not inherit btn if disabled
             setStyle(newStyle);
             setButtonText("Disabled");
         } else {

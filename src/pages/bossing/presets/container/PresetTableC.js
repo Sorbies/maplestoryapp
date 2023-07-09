@@ -19,7 +19,7 @@ function PresetTableC(props) {
                 }
             }
         }
-    }, [presetNames, editMode]);
+    }, [presets, presetNames, editMode]);
     //effect hook that disables the up swap for the first character and the down swap for the last character
     useEffect(() => {
         console.log("disabling edge case swap buttons")
@@ -32,7 +32,7 @@ function PresetTableC(props) {
                 lastButtonDown.setAttribute("disabled", true);
             }
         }
-    }, [editMode]);
+    }, [editMode, presetNames.length]);
 
     //functions
 

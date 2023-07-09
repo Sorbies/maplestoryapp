@@ -5,7 +5,7 @@ import AddCharP from "../presentational/AddCharP";
 function AddCharC(props) {
     //hooks
     const [newChar, setNewChar] = useState(""); //state hook for the new character
-    const { setCharNames, setCharDifficulties, setCharProgress } = useContext(statesContext);
+    const { setCharNames, setCharDifficulties, setCharPresets, setCharProgress } = useContext(statesContext);
 
     //variables
     const initialDifficulties = [1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1, 1]; //dummy initial difficulties
@@ -21,6 +21,7 @@ function AddCharC(props) {
     const addNewChar = () => {
         setCharNames((prev) => [...prev, newChar]);
         setCharDifficulties((prev) => [...prev, initialDifficulties]);
+        setCharPresets((prev) => [...prev, -1]);
         setCharProgress((prev) => [...prev, initialProgress]);
 
         setNewChar("");

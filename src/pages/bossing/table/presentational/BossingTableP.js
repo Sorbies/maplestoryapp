@@ -2,6 +2,7 @@ import { useContext } from "react"; //hooks
 import { statesContext } from "../../Bossing";
 import AddCharC from "../table components/container/AddCharC"; //components
 import ChangeDifficultyC from "../table components/container/ChangeDifficultyC";
+import ChangePresetC from "../table components/container/ChangePresetC";
 import ChangeProgressC from "../table components/container/ChangeProgressC";
 import CharacterNameC from "../table components/container/CharacterNameC";
 import DeleteCharC from "../table components/container/DeleteCharC";
@@ -41,6 +42,8 @@ function BossingTableP(props) {
                                 <td  className={tableStyle} key={"c" + charIndex}>
                                     <CharacterNameC charName={charName} charIndex={charIndex}/>
                                     <br/>
+                                    {editMode && <ChangePresetC charIndex={charIndex}/>}
+                                    
                                     {editMode && <SwapPositionC charIndex={charIndex}/>}
                                 </td>
 
