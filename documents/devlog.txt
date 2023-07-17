@@ -1,3 +1,9 @@
+2023-07-16:
+    - Began brainstorming way to redo data structure
+    - Removed ability to edit difficulties directly for each character. Instead, use presets
+    - Updated progress buttons to reflect the preset the character has selected
+    - Removed charDifficulties from code of other files (the components and states are still there)
+
 2023-07-09:
     - Added cursor attribute to buttons
     - Added new state, charPresets, that tracks which preset each character is using

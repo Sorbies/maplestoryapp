@@ -5,7 +5,7 @@ import styles from "../style/buttons.module.css";
 
 function ChangeProgressC(props) {
     //states
-    const { charProgress, setCharProgress, charDifficulties, presetMode } = useContext(statesContext);
+    const { charProgress, setCharProgress, presetMode, presets, charPresets } = useContext(statesContext);
     const [style, setStyle] = useState(styles.btn);
     const [buttonText, setButtonText] = useState("Default");
     
@@ -16,7 +16,7 @@ function ChangeProgressC(props) {
     //this effect hook determines what styling and text the progress button should display
     useEffect(() => {
         let newStyle = styles.btn + " ";
-        if (charDifficulties[props.charIndex][props.bossIndex] === 1) {
+        if (presets[charPresets[props.charIndex]][props.bossIndex] === 1) {
             newStyle = styles.disabled; //do Not inherit btn if disabled
             setStyle(newStyle);
             setButtonText("Disabled");
@@ -25,7 +25,7 @@ function ChangeProgressC(props) {
             setStyle(newStyle);
             setButtonText(isDone ? "Clear" : "Not Done");
         }
-    }, [charProgress, charDifficulties, presetMode, isDone, props.charIndex, props.bossIndex]);
+    }, [charProgress, presets, charPresets, presetMode, isDone, props.charIndex, props.bossIndex]);
 
     //functions
     //This function will allow updating the clear status of the character's bosses.

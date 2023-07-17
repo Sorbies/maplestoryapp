@@ -1,7 +1,6 @@
 import { useContext } from "react"; //hooks
 import { statesContext } from "../../Bossing";
 import AddCharC from "../table components/container/AddCharC"; //components
-import ChangeDifficultyC from "../table components/container/ChangeDifficultyC";
 import ChangePresetC from "../table components/container/ChangePresetC";
 import ChangeProgressC from "../table components/container/ChangeProgressC";
 import CharacterNameC from "../table components/container/CharacterNameC";
@@ -12,7 +11,7 @@ import styles from "../style/tables.module.css"; //styles
 
 function BossingTableP(props) {
     //states
-    const { charNames, charDifficulties, editMode } = useContext(statesContext);
+    const { charNames, editMode, presets, charPresets } = useContext(statesContext);
     
     const tableStyle = styles.table;
 
@@ -48,18 +47,18 @@ function BossingTableP(props) {
                                 </td>
 
                                 {/* The checkboxes */}
-                                {charDifficulties[charIndex].map((difficulty, bossIndex) => {
+                                {presets[charPresets[charIndex]].map((difficulty, bossIndex) => {
                                     return (
                                         <td  className={tableStyle} key={"c" + charIndex + "b" + bossIndex}>
                                             {props.translateDifficulty(difficulty)} <br />
                                             <ChangeProgressC charIndex={charIndex} bossIndex={bossIndex} />
                                             <br />
-                                            {editMode && <>
+                                            {/* {editMode && <>
                                                 <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={1} />
                                                 <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={2} />
                                                 <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={3} />
                                                 <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={4} />
-                                                <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={5} /></>}
+                                                <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={5} /></>} */}
 
 
                                         </td>

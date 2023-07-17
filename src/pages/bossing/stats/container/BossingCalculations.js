@@ -4,13 +4,13 @@ import BossingStats from "../presentational/BossingStats"; //components
 import { bossPrices } from "../../BossingData"; //constants
 
 function BossingCalculations(props) {
-    const { charDifficulties, charProgress } = useContext(statesContext); //retrieve necessary states
+    const { charDifficulties, charProgress, presets, charPresets } = useContext(statesContext); //retrieve necessary states
 
     const calcCurrentIncome = () => {
         let income = 0;
         for (let charIndex = 0; charIndex < charProgress.length; charIndex++) {
             for (let bossIndex = 0; bossIndex < charProgress[charIndex].length; bossIndex++) {
-                let currDifficulty = charDifficulties[charIndex][bossIndex]
+                let currDifficulty = presets[charPresets[charIndex]][bossIndex]
                 if (charProgress[charIndex][bossIndex]) {
                     income += bossPrices[bossIndex][currDifficulty];
                 }
@@ -22,7 +22,7 @@ function BossingCalculations(props) {
         let income = 0;
         for (let charIndex = 0; charIndex < charProgress.length; charIndex++) {
             for (let bossIndex = 0; bossIndex < charProgress[charIndex].length; bossIndex++) {
-                let currDifficulty = charDifficulties[charIndex][bossIndex]
+                let currDifficulty = presets[charPresets[charIndex]][bossIndex]
                 if (currDifficulty > 1) {
                     income += bossPrices[bossIndex][currDifficulty];
                 }
@@ -45,7 +45,7 @@ function BossingCalculations(props) {
         let count = 0;
         for (let charIndex = 0; charIndex < charProgress.length; charIndex++) {
             for (let bossIndex = 0; bossIndex < charProgress[charIndex].length; bossIndex++) {
-                let currDifficulty = charDifficulties[charIndex][bossIndex]
+                let currDifficulty = presets[charPresets[charIndex]][bossIndex]
                 if (currDifficulty > 1) {
                     count += 1;
                 }

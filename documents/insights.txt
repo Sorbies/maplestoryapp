@@ -16,3 +16,20 @@ Effect Hook, CSS, Delayed Rendering
  - Trying to access the DOM in an effect hook may result in things not happening in the order you expect them.
  - Instead of checking things about the DOM, try to see if you can reprogram your code to be based on the states you used to customize the DOM.
    (Keep it inside the app.)
+
+Using objects as states
+ - You need to do a deep copy (meaning, create an entirely separate object) and then set the state to the new cloned object
+ - You can't mutate the object property directly in the state.
+ - You can use the spread operator to copy all the old fields before updating your new values.
+    setPerson({
+      ...person, // Copy the old fields
+      firstName: e.target.value // But override this one
+    });
+ - The spread operator only penetrates one level deep, so you have to use the spread operator multiple times if you need to clone nested objects
+    setPerson({
+      ...person, // Copy other fields
+      artwork: { // but replace the artwork
+        ...person.artwork, // with the same one
+        city: 'New Delhi' // but in New Delhi!
+      }
+    });

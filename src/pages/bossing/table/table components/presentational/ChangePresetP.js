@@ -10,7 +10,6 @@ function ChangePresetP(props) {
 
     return (
         <>
-            Hello <br/>
             Preset: {props.getPresetName(props.charIndex)} <br/>
             {presetNames.map((presetName, nameIndex) => {
                 return (
