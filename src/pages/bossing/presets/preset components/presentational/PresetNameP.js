@@ -8,8 +8,8 @@ function PresetNameP(props) {
     //scripts
     let content;
 
-    if (editMode) {content = <input type="text" value={props.presetName} onChange={props.handleNameChange}/>;} 
-    else {content = props.presetName;}
+    if (editMode) {content = <input type="text" value={props.preset["name"]} onChange={props.handleNameChange}/>;} 
+    else {content = props.preset["name"];}
 
     return (
         <>

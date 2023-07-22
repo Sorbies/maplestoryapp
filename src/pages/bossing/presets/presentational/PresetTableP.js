@@ -4,61 +4,62 @@ import AddPresetC from "../preset components/container/AddPresetC"; //components
 import ChangeDifficultyC from "../preset components/container/ChangeDifficultyC";
 import DeletePresetC from "../preset components/container/DeletePresetC";
 import PresetNameC from "../preset components/container/PresetNameC";
-import { bosses } from "../../BossingData"; //constants
+import { bossData } from "../../BossingData"; //constants
 import styles from "../../table/style/tables.module.css";//styles
 
 
 function PresetTableP(props) {
-    const { presets, presetNames } = useContext(statesContext);
+    const { presets } = useContext(statesContext);
 
     const tableStyle = styles.table;
 
     return (
         <>
-            <br />
-            PRESETS
-            <br />
             <table className={tableStyle}>
 
                 <thead>
                     {/* Creates the header row of boss names */}
                     <tr>
                         <th className={tableStyle}>Preset</th>
-                        {bosses.map((boss, index) => <th className={tableStyle} key={"boss" + index}>{boss[0]}</th>)}
+                        {Object.keys(bossData).map((boss) => <th className={tableStyle} key={boss}>{boss}</th>)}
                         <th className={tableStyle}>Delete</th>
                     </tr>
                 </thead>
 
                 <tbody>
-                    {presetNames.map((presetName, presetIndex) => {
+                    {presets.map((preset) => {
                         return (
-                            <tr key={"row" + presetIndex}>
-                                <td className={tableStyle} key={"p" + presetIndex}>
-                                    <PresetNameC presetName={presetName} presetIndex={presetIndex}/>
-                                </td>
+                            <>
+                                {(preset["name"] !== "None") && <tr key={"row " + preset["key"]}>
+                                    <td className={tableStyle} key={"preset cell " + preset["key"]}>
+                                        <PresetNameC preset={preset} />
+                                    </td>
 
-                                {/* The checkboxes */}
-                                {presets[presetIndex].map((difficulty, bossIndex) => {
-                                    return (
-                                        <td  className={tableStyle} key={"p" + presetIndex + "b" + bossIndex}>
-                                            {props.translateDifficulty(difficulty)}
-                                            <br />
-                                            <ChangeDifficultyC presetIndex={presetIndex} bossIndex={bossIndex} difficulty={1} />
-                                            <ChangeDifficultyC presetIndex={presetIndex} bossIndex={bossIndex} difficulty={2} />
-                                            <ChangeDifficultyC presetIndex={presetIndex} bossIndex={bossIndex} difficulty={3} />
-                                            <ChangeDifficultyC presetIndex={presetIndex} bossIndex={bossIndex} difficulty={4} />
-                                            <ChangeDifficultyC presetIndex={presetIndex} bossIndex={bossIndex} difficulty={5} />
+                                    {/* The checkboxes */}
+                                    {Object.keys(preset["content"]).map((boss) => {
+                                        let difficulty = preset["content"][boss];
+
+                                        return (
+                                            <td className={tableStyle} key={"preset boss cell " + preset["key"] + " " + bossData[boss]["key"]}>
+                                                {bossData[boss]["modes"][difficulty]} <br />
+                                                <ChangeDifficultyC preset={preset} boss={boss} difficulty={0} />
+                                                <ChangeDifficultyC preset={preset} boss={boss} difficulty={1} />
+                                                <ChangeDifficultyC preset={preset} boss={boss} difficulty={2} />
+                                                <ChangeDifficultyC preset={preset} boss={boss} difficulty={3} />
+                                                <ChangeDifficultyC preset={preset} boss={boss} difficulty={4} />
 
 
-                                        </td>
-                                    )
-                                })}
+                                            </td>
+                                        )
+                                    })}
 
-                                {/* The delete button */}
-                                <td className={tableStyle} >
-                                    <DeletePresetC presetIndex={presetIndex} />
-                                </td>
-                            </tr>
+                                    {/* The delete button */}
+                                    <td className={tableStyle} key={"preset delete " + preset["key"]}>
+                                        <DeletePresetC preset={preset} />
+                                    </td>
+                                </tr>}
+
+                            </>
                         )
                     })
                     }

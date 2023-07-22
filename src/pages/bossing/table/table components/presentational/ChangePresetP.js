@@ -3,19 +3,18 @@ import { statesContext } from "../../../Bossing";
 import styles from "../style/buttons.module.css";
 
 function ChangePresetP(props) {
-    const { presetNames, charPresets } = useContext(statesContext);
+    const { presets } = useContext(statesContext);
     const style = styles.btn + " " + styles.normal;
-
-    console.log(charPresets);
 
     return (
         <>
-            Preset: {props.getPresetName(props.charIndex)} <br/>
-            {presetNames.map((presetName, nameIndex) => {
+            Preset: {props.character["preset"]} <br/>
+            {presets.map((preset) => {
                 return (
                     <>
-                        <button key={"c" + props.charIndex + "p" + nameIndex} className={style} onClick={() => props.setCharPreset(props.charIndex, nameIndex)}>
-                            {presetName}
+                        <button className={style} key={"char preset " + props.character["key"] + " " + preset["key"]}
+                            onClick={() => props.setCharPreset(preset)}>
+                            {preset["name"]}
                         </button> <br/>
                     </>
                 )

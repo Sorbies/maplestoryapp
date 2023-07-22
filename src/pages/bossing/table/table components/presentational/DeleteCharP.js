@@ -4,7 +4,7 @@ function DeleteCharP(props) {
     const style = styles.btn + " " + styles.normal;
 
     return (
-        <button type="button" className={style} onClick={() => props.deleteChar(props.charIndex)}>
+        <button type="button" className={style} onClick={() => props.deleteChar(props.character)}>
             Delete
         </button>
     );

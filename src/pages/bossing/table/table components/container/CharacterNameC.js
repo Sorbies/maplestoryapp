@@ -4,18 +4,19 @@ import CharacterNameP from "../presentational/CharacterNameP";
 
 function CharacterNameC(props) {
     //states
-    const {charNames, setCharNames} = useContext(statesContext);
+    const {characters, setCharacters} = useContext(statesContext);
 
     //functions
     const handleNameChange = (e) => {
-        let newCharNames = [...charNames];
-        newCharNames[props.charIndex] = e.target.value;
+        let charIndex = characters.indexOf(props.character);
+        let newCharacters = structuredClone(characters);
+        newCharacters[charIndex]["name"] = e.target.value;
 
-        setCharNames(newCharNames);
+        setCharacters(newCharacters);
     }
 
     return (
-        <CharacterNameP charName={props.charName} charIndex={props.charIndex} handleNameChange={handleNameChange}/>
+        <CharacterNameP character={props.character} handleNameChange={handleNameChange}/>
     )
 
 }

@@ -33,3 +33,16 @@ Using objects as states
         city: 'New Delhi' // but in New Delhi!
       }
     });
+
+Iterating through arrays vs objects
+ - In python, you can iterate through each element by using "for x in iterable:"
+ - The equivalent in JavaScript is "for (const x of array)" or "for (const x in object)"
+
+Keys Shennanigans
+ - Adding key attributes to an element will cause that element to re-render should the key change.
+ - If you gave an input box a key that changes with every input, then that box will lose focus
+   every time the key changes.
+
+Data Structure choices
+ - If you plan to store data in a dictionary, pick keys that don't have to change
+ - If your keys are just gonna be numbers, use an array instead of a dictionary

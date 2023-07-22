@@ -1,18 +1,19 @@
 import { useContext } from "react"; //hooks
 import { statesContext } from "../../Bossing"; //contexts
 import BossingStats from "../presentational/BossingStats"; //components
-import { bossPrices } from "../../BossingData"; //constants
+import { bossData } from "../../BossingData"; //constants
 
 function BossingCalculations(props) {
-    const { charDifficulties, charProgress, presets, charPresets } = useContext(statesContext); //retrieve necessary states
+    const { characters, presets } = useContext(statesContext); //retrieve necessary states
 
     const calcCurrentIncome = () => {
         let income = 0;
-        for (let charIndex = 0; charIndex < charProgress.length; charIndex++) {
-            for (let bossIndex = 0; bossIndex < charProgress[charIndex].length; bossIndex++) {
-                let currDifficulty = presets[charPresets[charIndex]][bossIndex]
-                if (charProgress[charIndex][bossIndex]) {
-                    income += bossPrices[bossIndex][currDifficulty];
+        for (const character of characters) {
+            for (const boss in bossData) {
+                let preset = presets.filter(prst => {return prst.name === character["preset"]})[0]
+                let difficulty = preset["content"][boss]
+                if (character["progress"][boss]) {
+                    income += bossData[boss]["prices"][difficulty];
                 }
             }
         }
@@ -20,11 +21,12 @@ function BossingCalculations(props) {
     }
     const calcMaxIncome = () => {
         let income = 0;
-        for (let charIndex = 0; charIndex < charProgress.length; charIndex++) {
-            for (let bossIndex = 0; bossIndex < charProgress[charIndex].length; bossIndex++) {
-                let currDifficulty = presets[charPresets[charIndex]][bossIndex]
-                if (currDifficulty > 1) {
-                    income += bossPrices[bossIndex][currDifficulty];
+        for (const character of characters) {
+            for (const boss in bossData) {
+                let preset = presets.filter(prst => {return prst.name === character["preset"]})[0]
+                let difficulty = preset["content"][boss]
+                if (difficulty > 0) {
+                    income += bossData[boss]["prices"][difficulty];
                 }
             }
         }
@@ -32,9 +34,9 @@ function BossingCalculations(props) {
     }
     const countCurrentCrystals = () => {
         let count = 0;
-        for (let charIndex = 0; charIndex < charProgress.length; charIndex++) {
-            for (let bossIndex = 0; bossIndex < charProgress[charIndex].length; bossIndex++) {
-                if (charProgress[charIndex][bossIndex]) {
+        for (const character of characters) {
+            for (const boss in bossData) {
+                if (character["progress"][boss]) {
                     count += 1;
                 }
             }
@@ -43,10 +45,11 @@ function BossingCalculations(props) {
     }
     const countMaxCrystals = () => {
         let count = 0;
-        for (let charIndex = 0; charIndex < charProgress.length; charIndex++) {
-            for (let bossIndex = 0; bossIndex < charProgress[charIndex].length; bossIndex++) {
-                let currDifficulty = presets[charPresets[charIndex]][bossIndex]
-                if (currDifficulty > 1) {
+        for (const character of characters) {
+            for (const boss in bossData) {
+                let preset = presets.filter(prst => {return prst.name === character["preset"]})[0]
+                let difficulty = preset["content"][boss]
+                if (difficulty > 0) {
                     count += 1;
                 }
             }

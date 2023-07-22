@@ -4,23 +4,17 @@ import DeleteCharP from "../presentational/DeleteCharP"; //components
 
 function DeleteCharC(props) {
     //states
-    const { charNames, charDifficulties, charProgress } = useContext(statesContext); //retrieve necessary states
-    const { setCharNames, setCharDifficulties, setCharProgress } = useContext(statesContext); //retrieve necessary states
+    const { characters, setCharacters } = useContext(statesContext); //retrieve necessary states
 
     //functions
     //Deletes an entry from the states when a user delets a character
-    const deleteChar = (charIndex) => {
-        let newCharNames = charNames.filter((name, index) => index !== charIndex);
-        let newCharDifficulties = charDifficulties.filter((difficulties, index) => index !== charIndex);
-        let newCharProgress = charProgress.filter((progress, index) => index !== charIndex);
-
-        setCharNames(newCharNames);
-        setCharDifficulties(newCharDifficulties);
-        setCharProgress(newCharProgress);
+    const deleteChar = (character) => {
+        let newCharacters = characters.filter((char) => char !== character);
+        setCharacters(newCharacters);
     }
 
     return (
-        <DeleteCharP deleteChar={deleteChar} charIndex={props.charIndex}/>
+        <DeleteCharP deleteChar={deleteChar} character={props.character}/>
     );
 }
 

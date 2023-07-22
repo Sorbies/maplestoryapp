@@ -32,49 +32,74 @@ function Bossing() {
     return [someState, setSomeState]
   }
 
+  const defaultPreset = {
+    name: "None",
+    key: 0,
+    content: {
+      "Hilla": 0,
+      "PB": 0,
+      "Cygnus": 0,
+      "PNo": 0,
+      "Zakum": 0,
+      "Pierre": 0,
+      "Von Bon": 0,
+      "C Queen": 0,
+      "Vellum": 0,
+      "Magnus": 0,
+      "Papulatus": 0,
+      "Akechi": 0,
+      "Lotus": 0,
+      "Damien": 0,
+      "GA Slime": 0,
+      "Lucid": 0,
+      "Will": 0,
+      "Gloom": 0,
+      "V Hilla": 0,
+      "Darknell": 0,
+      "Seren": 0,
+      "Kalos": 0,
+      "Kaling": 0,
+    }
+  }
+
   //states
-  const [charNames, setCharNames] = usePersistingState("charNames", []); //hook for char names
-  const [charPresets, setCharPresets] = usePersistingState("charPresets", []); //hook for storing which preset each char uses
-  const [charDifficulties, setCharDifficulties] = usePersistingState("charDifficulties", []); //hook for char difficulties (boss difficulties that the char can run)
-  const [charProgress, setCharProgress] = usePersistingState("charProgress", []) //hook for char progress (boss clear status for the week)
-  const [presets, setPresets] = usePersistingState("presets", []); //hook for storing presets
-  const [presetNames, setPresetNames] = usePersistingState("presetNames", []); //hook for storing preset names
+  const [characters, setCharacters] = usePersistingState("characters", []); //hook for char names
+  const [presets, setPresets] = usePersistingState("presets", [defaultPreset]); //hook for char names
+  const [numC, setNumC] = usePersistingState("numC", 10);
+  const [numP, setNumP] = usePersistingState("numP", 10); 
+
   const [editMode, setEditMode] = useState(false);
   const [presetMode, setPresetMode] = useState(false);
 
   //context holder
   const statesData = {
-    charNames: charNames,
-    charPresets: charPresets,
-    charDifficulties: charDifficulties,
-    charProgress: charProgress,
+    characters: characters,
     presets: presets,
-    presetNames: presetNames,
+    numC: numC,
+    numP: numP,
     editMode: editMode,
     presetMode: presetMode,
 
-    setCharNames: setCharNames,
-    setCharPresets: setCharPresets,
-    setCharDifficulties: setCharDifficulties,
-    setCharProgress: setCharProgress,
+    setCharacters: setCharacters,
     setPresets: setPresets,
-    setPresetNames: setPresetNames,
+    setNumC: setNumC,
+    setNumP: setNumP,
     setEditMode: setEditMode,
     setPresetMode: setPresetMode,
   }
   //******************** */
 
-  //not global stuff
+  // //not global stuff
   const [content, setContent] = useState(null);
   useEffect(() => {
-    let newContent = presetMode ? <PresetTableC/> : <BossingTableC/>;
+    let newContent = presetMode ? <PresetTableC /> : <BossingTableC />;
     setContent(newContent);
   }, [presetMode]);
 
   return (
     <statesContext.Provider value={statesData}>
-      <BossingCalculations/>
-      <ModeControlC/>
+      <BossingCalculations />
+      <ModeControlC />
       {content}
     </statesContext.Provider>
   );

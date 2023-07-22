@@ -8,8 +8,8 @@ function CharacterNameP(props) {
     //scripts
     let content;
 
-    if (editMode) {content = <input type="text" value={props.charName} onChange={props.handleNameChange}/>;} 
-    else {content = props.charName;}
+    if (editMode) {content = <input type="text" value={props.character["name"]} onChange={props.handleNameChange}/>;} 
+    else {content = props.character["name"]}
 
     return (
         <>

@@ -4,50 +4,33 @@ import SwapPositionP from "../presentational/SwapPositionP";
 
 function SwapPositionC(props) {
     //states
-    const { charNames, charDifficulties, charProgress } = useContext(statesContext);
-    const { setCharNames, setCharDifficulties, setCharProgress } = useContext(statesContext);
+    const { characters, setCharacters } = useContext(statesContext);
 
     //functions
     //generic swap function for two items in an array
     const swap = (index1, index2, container) => {
         if (index1 >= 0 && index1 < container.length && index2 >= 0 && index2 < container.length) {
-            const temp = container[index1];
-            container[index1] = container[index2];
-            container[index2] = temp;
+            [container[index1], container[index2]] = [container[index2], container[index1]];
         }
     }
 
     //swap current char state info with that of previous. Edge case is handled in swap
-    const swapUp = (charIndex) => {
-        const newCharNames = [...charNames];
-        const newCharDifficulties = [...charDifficulties];
-        const newCharProgress = [...charProgress];
-        
-        swap(charIndex, charIndex - 1, newCharNames);
-        swap(charIndex, charIndex - 1, newCharDifficulties);
-        swap(charIndex, charIndex - 1, newCharProgress);
-
-        setCharNames(newCharNames);
-        setCharDifficulties(newCharDifficulties);
-        setCharProgress(newCharProgress);
+    const swapUp = (character) => {
+        let charIndex = characters.indexOf(character);
+        let newCharacters = structuredClone(characters);
+        swap(charIndex, charIndex - 1, newCharacters);
+        setCharacters(newCharacters);
     }
     //swap current char state info with that of next. Edge case is handled in swap
-    const swapDown = (charIndex) => {
-        const newCharNames = [...charNames];
-        const newCharDifficulties = [...charDifficulties];
-        const newCharProgress = [...charProgress];
-        
-        swap(charIndex, charIndex + 1, newCharNames);
-        swap(charIndex, charIndex + 1, newCharDifficulties);
-        swap(charIndex, charIndex + 1, newCharProgress);
-
-        setCharNames(newCharNames);
-        setCharDifficulties(newCharDifficulties);
-        setCharProgress(newCharProgress);
+    const swapDown = (character) => {
+        let charIndex = characters.indexOf(character);
+        let newCharacters = structuredClone(characters);
+        swap(charIndex, charIndex + 1, newCharacters);
+        setCharacters(newCharacters);
     }
 
     return (
-        <SwapPositionP charIndex={props.charIndex} swapUp={swapUp} swapDown={swapDown}/>
+        <SwapPositionP character={props.character} swapUp={swapUp} swapDown={swapDown}/>
     );
 }
 

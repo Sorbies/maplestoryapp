@@ -3,25 +3,18 @@ import { statesContext } from "../../../Bossing";
 import ChangePresetP from "../presentational/ChangePresetP";
 
 function ChangePresetC(props) {
-    const { presetNames, charPresets, setCharPresets } = useContext(statesContext);
+    const { characters, setCharacters } = useContext(statesContext);
 
-    function getPresetName(charIndex) {
-        const charPresetIndex = charPresets[charIndex]; //gets the preset index for the preset that the char (chosen by charIndex) is using
-        if (charPresetIndex >= 0) {
-            return presetNames[charPresetIndex];
-        }
-        return "None";
-    }
-
-    function setCharPreset(charIndex, presetIndex) {
-        let newCharPresets = [...charPresets];
-        newCharPresets[charIndex] = presetIndex;
-        setCharPresets(newCharPresets);
+    function setCharPreset(preset) {
+        let newCharacters = structuredClone(characters);
+        let charIndex = characters.indexOf(props.character);
+        newCharacters[charIndex]["preset"] = preset["name"];
+        setCharacters(newCharacters);
     }
 
     return (
         <>
-            <ChangePresetP charIndex={props.charIndex} getPresetName={getPresetName} setCharPreset={setCharPreset}/>
+            <ChangePresetP character={props.character} setCharPreset={setCharPreset}/>
         </>
     )
 }

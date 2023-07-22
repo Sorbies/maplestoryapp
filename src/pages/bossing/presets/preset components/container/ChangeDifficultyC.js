@@ -12,28 +12,29 @@ function ChangeDifficultyC(props) {
 
     //functions
     //Updates the clear difficulty a character does for that boss
-    const handleDifficulty = (difficulty, presetIndex, bossIndex) => {
-        let newPresets = [...presets];
-        newPresets[presetIndex][bossIndex] = difficulty;
+    const handleDifficulty = (difficulty, preset, boss) => {
+        let newPresets = structuredClone(presets);
+        const presetIndex = presets.indexOf(preset);
+        newPresets[presetIndex]["content"][boss] = difficulty;
 
         setPresets(newPresets);
     }
 
     //script
     switch (props.difficulty) {
-        case 1:
+        case 0:
             symbol = "∅";
             break;
-        case 2:
+        case 1:
             symbol = "E";
             break;
-        case 3:
+        case 2:
             symbol = "N";
             break;
-        case 4:
+        case 3:
             symbol = "H";
             break;
-        case 5:
+        case 4:
             symbol = "X";
             break;
         default:
@@ -41,7 +42,7 @@ function ChangeDifficultyC(props) {
     }
 
     return (
-        <ChangeDifficultyP presetIndex={props.presetIndex} bossIndex={props.bossIndex} handleDifficulty={handleDifficulty} difficulty={props.difficulty} symbol={symbol}/>
+        <ChangeDifficultyP preset={props.preset} boss={props.boss} handleDifficulty={handleDifficulty} difficulty={props.difficulty} symbol={symbol}/>
     );
 
 }

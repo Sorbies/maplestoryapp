@@ -1,12 +1,14 @@
+import { bossData } from "../../../BossingData";
 import styles from "../../../table/table components/style/buttons.module.css";
 
 function ChangeDifficultyP(props) {
     const style = styles.normal;
+    
 
     return (
-        <button type="button" key={"p" + props.presetIndex + "b" + props.bossIndex + "d" + props.difficulty}
-            className={style} id={"p" + props.presetIndex + "b" + props.bossIndex + "d" + props.difficulty}
-            onClick={() => { props.handleDifficulty(props.difficulty, props.presetIndex, props.bossIndex) }}>
+        <button type="button" key={"preset diff " + props.preset["key"] + " " + bossData[props.boss]["key"] + " " + props.difficulty}
+            className={style} id={"preset diff " + props.preset["key"] + " " + bossData[props.boss]["key"] + " " + props.difficulty}
+            onClick={() => { props.handleDifficulty(props.difficulty, props.preset, props.boss) }}>
             {props.symbol}
         </button>
     );

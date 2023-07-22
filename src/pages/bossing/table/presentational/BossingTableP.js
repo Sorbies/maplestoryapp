@@ -6,12 +6,12 @@ import ChangeProgressC from "../table components/container/ChangeProgressC";
 import CharacterNameC from "../table components/container/CharacterNameC";
 import DeleteCharC from "../table components/container/DeleteCharC";
 import SwapPositionC from "../table components/container/SwapPositionC";
-import { bosses } from "../../BossingData"; //constants
+import { bossData } from "../../BossingData"; //constants
 import styles from "../style/tables.module.css"; //styles
 
 function BossingTableP(props) {
     //states
-    const { charNames, editMode, presets, charPresets } = useContext(statesContext);
+    const { characters, editMode, presets } = useContext(statesContext);
     
     const tableStyle = styles.table;
 
@@ -19,14 +19,13 @@ function BossingTableP(props) {
 
     return (
         <>
-            <br/>
             <table className={tableStyle}>
 
                 <thead>
                     {/* Creates the header row of boss names */}
                     <tr>
                         <th className={tableStyle}>Character</th>
-                        {bosses.map((boss, index) => <th  className={tableStyle} key={"boss" + index}>{boss[0]}</th>)}
+                        {Object.keys(bossData).map((boss) => <th  className={tableStyle} key={boss}>{boss}</th>)}
                         {editMode && <th className={tableStyle}>Delete</th>}
                     </tr>
                 </thead>
@@ -34,40 +33,34 @@ function BossingTableP(props) {
                 <tbody>
                     {/* Creates a row for each character, then data for the bosses they clear 
                     keys: c stands for char, b stands for boss, d stands for difficulty */}
-                    {charNames.map((charName, charIndex) => {
+                    {characters.map((character) => {
                         return (
-                            <tr key={"row" + charIndex}>
+                            <tr key={"row " + character["key"]}>
                                 {/* The character name */}
-                                <td  className={tableStyle} key={"c" + charIndex}>
-                                    <CharacterNameC charName={charName} charIndex={charIndex}/>
+                                <td  className={tableStyle} key={"char cell " + character["key"]}>
+                                    <CharacterNameC character={character}/>
                                     <br/>
-                                    {editMode && <ChangePresetC charIndex={charIndex}/>}
+                                    {editMode && <ChangePresetC character={character}/>}
                                     
-                                    {editMode && <SwapPositionC charIndex={charIndex}/>}
+                                    {editMode && <SwapPositionC character={character}/>}
                                 </td>
 
                                 {/* The checkboxes */}
-                                {presets[charPresets[charIndex]].map((difficulty, bossIndex) => {
+                                {Object.keys(bossData).map((boss) => {
+                                    let preset = presets.filter(prst => {return prst.name === character["preset"]})[0]
+                                    let difficulty = preset["content"][boss];
                                     return (
-                                        <td  className={tableStyle} key={"c" + charIndex + "b" + bossIndex}>
-                                            {props.translateDifficulty(difficulty)} <br />
-                                            <ChangeProgressC charIndex={charIndex} bossIndex={bossIndex} />
-                                            <br />
-                                            {/* {editMode && <>
-                                                <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={1} />
-                                                <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={2} />
-                                                <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={3} />
-                                                <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={4} />
-                                                <ChangeDifficultyC charIndex={charIndex} bossIndex={bossIndex} difficulty={5} /></>} */}
-
+                                        <td className={tableStyle} key={"boss cell " + character["key"] + " " + bossData[boss]["key"]}>
+                                            {bossData[boss]["modes"][difficulty]} <br />
+                                            <ChangeProgressC character={character} boss={boss} />
 
                                         </td>
                                     )
                                 })}
 
                                 {/* The delete button */}
-                                {editMode && <td className={tableStyle} >
-                                    <DeleteCharC charIndex={charIndex} />
+                                {editMode && <td className={tableStyle} key={"char delete " + character["key"]}>
+                                    <DeleteCharC character={character} />
                                 </td>}
 
 

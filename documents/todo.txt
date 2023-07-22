@@ -3,8 +3,8 @@ Bossing:
 - Add character avatars to the table
 - Add a way for users to swap the order of characters
 - Add a way for users to export and import their character sheets
-- Connect presets to char table
 - Refactor the app to use don's layers strat, then try to merge components that apply to both presets and bossingtable
+- Make swap buttons not have the pointer
 
 Dailies:
 

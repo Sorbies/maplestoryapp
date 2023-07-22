@@ -4,7 +4,7 @@ function DeletePresetP(props) {
     const style = styles.btn + " " + styles.normal;
 
     return (
-        <button type="button" className={style} onClick={() => props.deletePreset(props.presetIndex)}>
+        <button type="button" className={style} onClick={() => props.deletePreset(props.preset)}>
             Delete
         </button>
     );

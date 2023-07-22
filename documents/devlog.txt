@@ -1,3 +1,35 @@
+2023-07-22:
+    - DeleteCharC.js refactored
+    - DeleteCharP.js refactored
+    - AddCharC.js refactored
+    - AddCharP.js refactored
+    - PresetTableC.js refactored
+    - PresetTableP.js refactored
+    - PresetNameC.js refactored
+    - PresetNameP.js refactored
+    - ChangeDifficultyC.js refactored
+    - ChangeDifficultyP.js refactored
+    - DeletePresetC.js refactored
+    - DeletePresetP.js refactored
+    - AddPresetC.js refactored
+    - AddPresetP.js refactored
+
+2023-07-21:
+    - Began the process of refactoring data structures
+    - Bossing.js refactored
+    - BossingData.js refactored
+    - BossingCalculations.js refactored
+    - BossingTableC.js refactored
+    - BossingTableP.js refactored
+    - CharacterNameC.js refactored
+    - CharacterNameP.js refactored
+    - ChangePresetC.js refactored
+    - ChangePresetP.js refactored
+    - SwapPositionC.js refactored
+    - SwapPositionP.js refactored
+    - ChangeProgressC.js refactored
+    - ChangeProgressP.js refactored
+
 2023-07-16:
     - Began brainstorming way to redo data structure
     - Removed ability to edit difficulties directly for each character. Instead, use presets

@@ -4,18 +4,30 @@ import PresetNameP from "../presentational/PresetNameP";
 
 function PresetNameC(props) {
     //states
-    const { presetNames, setPresetNames} = useContext(statesContext);
+    const { presets, setPresets, characters, setCharacters } = useContext(statesContext);
 
     //functions
     const handleNameChange = (e) => {
-        let newPresetNames = [...presetNames];
-        newPresetNames[props.presetIndex] = e.target.value;
+        let newPresets = structuredClone(presets);
+        let presetIndex = presets.indexOf(props.preset);
+        newPresets[presetIndex]["name"] = e.target.value;
 
-        setPresetNames(newPresetNames);
+        //replace instances of the old name with the new name
+        let oldPreset = props.preset["name"];
+        let newCharacters = structuredClone(characters);
+        for (let character of newCharacters) {
+            if (character["preset"] === oldPreset) {
+                character["preset"] = e.target.value;
+            }
+        }
+
+        setPresets(newPresets);
+        setCharacters(newCharacters);
+
     }
 
     return (
-        <PresetNameP presetName={props.presetName} presetIndex={props.presetIndex} handleNameChange={handleNameChange}/>
+        <PresetNameP preset={props.preset} handleNameChange={handleNameChange}/>
     )
 }
 

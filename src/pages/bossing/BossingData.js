@@ -1,51 +1,122 @@
   //This array contains the available difficulties for each boss.
   //indexes from left to right: skip(1), easy(2), normal(3), chaos/hard(4), extreme(5).
   //0 = that mode doesn't exist for the boss. 1 = it does
-  export const bosses = [["Hilla",    1, 0, 0, 1, 0], 
-                         ["PB",       1, 0, 0, 1, 0], 
-                         ["Cygnus",   1, 1, 1, 0, 0], 
-                         ["PNo",      1, 0, 1, 0, 0], 
-                         ["Zakum",    1, 0, 0, 1, 0], 
-                         ["Pierre",   1, 0, 0, 1, 0], 
-                         ["Von Bon",  1, 0, 0, 1, 0], 
-                         ["C Queen",  1, 0, 0, 1, 0], 
-                         ["Vellum",   1, 0, 0, 1, 0], 
-                         ["Magnus",   1, 0, 0, 1, 0], 
-                         ["Papulatus",1, 0, 0, 1, 0], 
-                         ["Akechi",   1, 0, 1, 0, 0],
-                         ["Lotus",    1, 0, 1, 1, 0], 
-                         ["Damien",   1, 0, 1, 1, 0], 
-                         ["GA Slime", 1, 0, 1, 1, 0],
-                         ["Lucid",    1, 1, 1, 1, 0], 
-                         ["Will",     1, 1, 1, 1, 0], 
-                         ["Gloom",    1, 0, 1, 1, 0], 
-                         ["V Hilla",  1, 0, 1, 1, 0], 
-                         ["Darknell", 1, 0, 1, 1, 0],
-                         ["Seren",    1, 0, 1, 1, 1], 
-                         ["Kalos",    1, 1, 1, 1, 1], 
-                         ["Kaling",   1, 1, 1, 1, 1]]
-  
-  //This array contains the prices of each difficulty's boss crystal in the same format as the bosses array.
-  export const bossPrices = [["Hilla",    0,         0,         0,   56250000,          0], 
-                             ["PB",       0,         0,         0,   64000000,          0], 
-                             ["Cygnus",   0,  45562500,  72250000,          0,          0], 
-                             ["PNo",      0,         0,  81000000,          0,          0], 
-                             ["Zakum",    0,         0,         0,   81000000,          0], 
-                             ["Pierre",   0,         0,         0,   81000000,          0], 
-                             ["Von Bon",  0,         0,         0,   81000000,          0], 
-                             ["C Queen",  0,         0,         0,   81000000,          0], 
-                             ["Vellum",   0,         0,         0,  105062600,          0], 
-                             ["Magnus",   0,         0,         0,   95062500,          0], 
-                             ["Papulatus",0,         0,         0,  132250000,          0], 
-                             ["Akechi",   0,         0, 144000000,          0,          0],
-                             ["Lotus",    0,         0, 162562500,  370562500,          0], 
-                             ["Damien",   0,         0, 169000000,  351562500,          0], 
-                             ["GA Slime", 0,         0, 171610000,  451562500,          0],
-                             ["Lucid",    0, 175562500, 203062500,  400000000,          0], 
-                             ["Will",     0, 191275000, 232562500,  441000000,          0], 
-                             ["Gloom",    0,         0, 248062500,  462250000,          0], 
-                             ["V Hilla",  0,         0, 447600000,  552250000,          0], 
-                             ["Darknell", 0,         0, 264062500,  484000000,          0],
-                             ["Seren",    0,         0, 668437500,  756250000, 3025000000], 
-                             ["Kalos",    0,         0, 1000000000,         0,          0], 
-                             ["Kaling",   0,         0,         0,          0,          0]]
+
+  export const bossData = {
+    "Hilla": {
+      key: 0,
+      modes: ["None", null, null, "Hard", null],
+      prices: [0, 0, 0, 56250000, 0]
+    },
+    "PB": {
+      key: 1,
+      modes: ["None", null, null, "Chaos", null],
+      prices: [0, 0, 0, 64000000, 0]
+    },
+    "Cygnus": {
+      key: 2,
+      modes: ["None", "Easy", "Normal", null, null],
+      prices: [0, 45562500, 72250000, 0, 0]
+    },
+    "PNo": {
+      key: 3,
+      modes: ["None", null, "Normal", null, null],
+      prices: [0, 0, 81000000, 0, 0]
+    },
+    "Zakum": {
+      key: 4,
+      modes: ["None", null, null, "Chaos", null],
+      prices: [0, 0, 0, 81000000, 0]
+    },
+    "Pierre": {
+      key: 5,
+      modes: ["None", null, null, "Chaos", null],
+      prices: [0, 0, 0, 81000000, 0]
+    },
+    "Von Bon": {
+      key: 6,
+      modes: ["None", null, null, "Chaos", null],
+      prices: [0, 0, 0, 81000000, 0]
+    },
+    "C Queen": {
+      key: 7,
+      modes: ["None", null, null, "Chaos", null],
+      prices: [0, 0, 0, 81000000, 0]
+    },
+    "Vellum": {
+      key: 8,
+      modes: ["None", null, null, "Chaos", null],
+      prices: [0, 0, 0, 105062600, 0]
+    },
+    "Magnus": {
+      key: 9,
+      modes: ["None", null, null, "Hard", null],
+      prices: [0, 0, 0, 95062500, 0]
+    },
+    "Papulatus": {
+      key: 10,
+      modes: ["None", null, null, "Chaos", null],
+      prices: [0, 0, 0, 132250000, 0]
+    },
+    "Akechi": {
+      key: 11,
+      modes: ["None", null, "Normal", null, null],
+      prices: [0, 0, 144000000, 0, 0]
+    },
+    "Lotus": {
+      key: 12,
+      modes: ["None", null, "Normal", "Hard", null],
+      prices: [0, 0, 162562500, 370562500, 0]
+    },
+    "Damien": {
+      key: 13,
+      modes: ["None", null, "Normal", "Hard", null],
+      prices: [0, 0, 169000000, 351562500, 0]
+    },
+    "GA Slime": {
+      key: 14,
+      modes: ["None", null, "Normal", "Chaos", null],
+      prices: [0, 0, 171610000, 451562500, 0]
+    },
+    "Lucid": {
+      key: 15,
+      modes: ["None", "Easy", "Normal", "Hard", null],
+      prices: [0, 175562500, 203062500, 400000000, 0]
+    },
+    "Will": {
+      key: 16,
+      modes: ["None", "Easy", "Normal", "Hard", null],
+      prices: [0, 191275000, 232562500, 441000000, 0]
+    },
+    "Gloom": {
+      key: 17,
+      modes: ["None", null, "Normal", "Chaos", null],
+      prices: [0, 0, 248062500, 462250000, 0]
+    },
+    "V Hilla": {
+      key: 18,
+      modes: ["None", null, "Normal", "Hard", null],
+      prices: [0, 0, 447600000, 552250000, 0]
+    },
+    "Darknell": {
+      key: 19,
+      modes: ["None", null, "Normal", "Hard", null],
+      prices: [0, 0, 264062500, 484000000, 0]
+    },
+    "Seren": {
+      key: 20,
+      modes: ["None", null, "Normal", "Hard", "Extreme"],
+      prices: [0, 0, 668437500, 756250000, 3025000000]
+    },
+    "Kalos": {
+      key: 21,
+      modes: ["None", "Easy", "Normal", "Chaos", "Extreme"],
+      prices: [0, -1, 1000000000, -1, -1]
+    },
+    "Kaling": {
+      key: 22,
+      modes: ["None", "Easy", "Normal", "Chaos", "Extreme"],
+      prices: [-1, -1, -1, -1, -1]
+    },
+    
+  }

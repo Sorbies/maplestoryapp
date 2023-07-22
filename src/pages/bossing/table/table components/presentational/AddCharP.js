@@ -5,7 +5,7 @@ function AddCharP(props) {
 
     return (
         <>
-            Add a new character: <input type="text" className={style} value={props.newChar} onChange={props.handleNewChar} /> 
+            Add a new character: <input type="text" className={style} value={props.newName} onChange={props.handleNewName} /> 
             <button onClick={props.addNewChar} className={style}>Add</button>
         </>
     )
