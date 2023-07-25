@@ -46,3 +46,6 @@ Keys Shennanigans
 Data Structure choices
  - If you plan to store data in a dictionary, pick keys that don't have to change
  - If your keys are just gonna be numbers, use an array instead of a dictionary
+
+Images in react
+ - Put the assets in the public folder or import them into your file

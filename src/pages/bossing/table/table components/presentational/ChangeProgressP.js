@@ -1,4 +1,4 @@
-import { bossData } from "../../../BossingData";
+import { bossData } from "../../../../../constants/BossData";
 
 function ChangeProgressP(props) {
     //variables

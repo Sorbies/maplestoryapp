@@ -1,4 +1,4 @@
-import { bossData } from "../../../BossingData";
+import { bossData } from "../../../../../constants/BossData";
 import styles from "../../../table/table components/style/buttons.module.css";
 
 function ChangeDifficultyP(props) {

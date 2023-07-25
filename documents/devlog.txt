@@ -1,3 +1,11 @@
+2023-07-25:
+    - Added pictures to the bosses
+    - Adjusted column width
+    - Moved hooks in BossingTableC to ChangeProgressC and SwapPositionC
+    - Implemented a dropdown function for the changing preset mechanism
+    - Separated extra stuff that was in the character column into their own columns
+    - Added a check all feature for a character
+
 2023-07-22:
     - DeleteCharC.js refactored
     - DeleteCharP.js refactored

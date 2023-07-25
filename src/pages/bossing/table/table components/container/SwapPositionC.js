@@ -1,10 +1,29 @@
-import { useContext } from "react";
+import { useEffect, useContext } from "react";
 import { statesContext } from "../../../Bossing";
 import SwapPositionP from "../presentational/SwapPositionP";
 
 function SwapPositionC(props) {
     //states
     const { characters, setCharacters } = useContext(statesContext);
+
+    //effect hook that disables the up swap for the first character and the down swap for the last character
+    useEffect(() => {
+        for (let i = 0; i < characters.length; i++) {
+            let swapUpButton = document.getElementById("c" + i + "swapup");
+            if (swapUpButton != null) swapUpButton.removeAttribute("disabled");
+            let swapDownButton = document.getElementById("c" + i + "swapdown");
+            if (swapDownButton != null) swapDownButton.removeAttribute("disabled");
+        }
+
+        let firstButtonUp = document.getElementById("c" + 0 + "swapup");
+        let lastButtonDown = document.getElementById("c" + (characters.length - 1) + "swapdown");
+
+        if (firstButtonUp != null && lastButtonDown != null) {
+            firstButtonUp.setAttribute("disabled", true);
+            lastButtonDown.setAttribute("disabled", true);
+        }
+
+    }, [characters]);
 
     //functions
     //generic swap function for two items in an array
@@ -30,7 +49,7 @@ function SwapPositionC(props) {
     }
 
     return (
-        <SwapPositionP character={props.character} swapUp={swapUp} swapDown={swapDown}/>
+        <SwapPositionP character={props.character} swapUp={swapUp} swapDown={swapDown} />
     );
 }
 

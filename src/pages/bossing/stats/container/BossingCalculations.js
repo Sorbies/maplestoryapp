@@ -1,7 +1,7 @@
 import { useContext } from "react"; //hooks
 import { statesContext } from "../../Bossing"; //contexts
 import BossingStats from "../presentational/BossingStats"; //components
-import { bossData } from "../../BossingData"; //constants
+import { bossData } from "../../../../constants/BossData"; //constants
 
 function BossingCalculations(props) {
     const { characters, presets } = useContext(statesContext); //retrieve necessary states

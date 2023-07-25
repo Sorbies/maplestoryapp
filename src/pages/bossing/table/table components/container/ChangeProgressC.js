@@ -2,6 +2,7 @@ import { useState, useEffect, useContext } from "react"; //hooks
 import { statesContext } from "../../../Bossing"; //states
 import ChangeProgressP from "../presentational/ChangeProgressP"; //css
 import styles from "../style/buttons.module.css";
+import { bossData } from "../../../../../constants/BossData";
 
 function ChangeProgressC(props) {
     //states
@@ -20,13 +21,30 @@ function ChangeProgressC(props) {
         if (preset["content"][props.boss] === 0) {
             newStyle = styles.disabled; //do Not inherit btn if disabled
             setStyle(newStyle);
-            setButtonText("Disabled");
+            setButtonText("🛇");
         } else {
             newStyle += isDone ? styles.clear : styles.notDone;
             setStyle(newStyle);
-            setButtonText(isDone ? "Clear" : "Not Done");
+            setButtonText(isDone ? "✔" : "✖");
         }
     }, [characters, presets, props.character, props.boss, isDone]);
+
+    //effect hook that disables the clear status button for skipped bosses
+    useEffect(() => {
+        for (const character of characters) {
+            let preset = presets.filter(prst => {return prst.name === character["preset"]})[0]
+            for (const boss in bossData) {
+                let button = document.getElementById("progress button " + character["key"] + " " + bossData[boss]["key"]);
+                if (button != null) {
+                    if (preset["content"][boss] === 0) {
+                        button.setAttribute("disabled", true);
+                    } else {
+                        button.removeAttribute("disabled");
+                    }
+                }
+            }
+        }
+    }, [characters, presets]);
 
     //functions
     //This function will allow updating the clear status of the character's bosses.

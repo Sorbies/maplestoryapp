@@ -4,16 +4,19 @@ import AddCharC from "../table components/container/AddCharC"; //components
 import ChangePresetC from "../table components/container/ChangePresetC";
 import ChangeProgressC from "../table components/container/ChangeProgressC";
 import CharacterNameC from "../table components/container/CharacterNameC";
+import CheckAllC from "../table components/container/CheckAllC";
 import DeleteCharC from "../table components/container/DeleteCharC";
 import SwapPositionC from "../table components/container/SwapPositionC";
-import { bossData } from "../../BossingData"; //constants
+import { bossData } from "../../../../constants/BossData"; //constants
 import styles from "../style/tables.module.css"; //styles
 
 function BossingTableP(props) {
     //states
-    const { characters, editMode, presets } = useContext(statesContext);
-    
+    const { characters, presets } = useContext(statesContext);
+
     const tableStyle = styles.table;
+    const bossStyle = styles.bosses;
+    const columnStyle = styles.column;
 
     //functions
 
@@ -24,9 +27,18 @@ function BossingTableP(props) {
                 <thead>
                     {/* Creates the header row of boss names */}
                     <tr>
+                        <th className={tableStyle}></th>
                         <th className={tableStyle}>Character</th>
-                        {Object.keys(bossData).map((boss) => <th  className={tableStyle} key={boss}>{boss}</th>)}
-                        {editMode && <th className={tableStyle}>Delete</th>}
+                        <th className={tableStyle}>Preset</th>
+                        <th className={tableStyle}></th>
+                        {Object.keys(bossData).map((boss) => {
+                            return (
+                                <th className={tableStyle + " " + columnStyle} key={boss}>
+                                    <img className={bossStyle} src={bossData[boss]["img"]} alt={boss}/>
+                                </th>
+                            )
+                        })}
+                        <th className={tableStyle}>Delete</th>
                     </tr>
                 </thead>
 
@@ -36,18 +48,24 @@ function BossingTableP(props) {
                     {characters.map((character) => {
                         return (
                             <tr key={"row " + character["key"]}>
-                                {/* The character name */}
-                                <td  className={tableStyle} key={"char cell " + character["key"]}>
-                                    <CharacterNameC character={character}/>
-                                    <br/>
-                                    {editMode && <ChangePresetC character={character}/>}
+                                <td className={tableStyle} key={"swap cell " + character["key"]}>
+                                    <SwapPositionC character={character} />
+                                </td>
+                                <td className={tableStyle} key={"char cell " + character["key"]}>
+                                    <CharacterNameC character={character} />
+                                </td>
                                     
-                                    {editMode && <SwapPositionC character={character}/>}
+                                <td className={tableStyle} key={"char preset cell " + character["key"]}>
+                                    <ChangePresetC character={character} />
+                                </td>
+
+                                <td className={tableStyle}>
+                                    <CheckAllC character={character} />
                                 </td>
 
                                 {/* The checkboxes */}
                                 {Object.keys(bossData).map((boss) => {
-                                    let preset = presets.filter(prst => {return prst.name === character["preset"]})[0]
+                                    let preset = presets.filter(prst => { return prst.name === character["preset"] })[0]
                                     let difficulty = preset["content"][boss];
                                     return (
                                         <td className={tableStyle} key={"boss cell " + character["key"] + " " + bossData[boss]["key"]}>
@@ -59,10 +77,9 @@ function BossingTableP(props) {
                                 })}
 
                                 {/* The delete button */}
-                                {editMode && <td className={tableStyle} key={"char delete " + character["key"]}>
+                                <td className={tableStyle} key={"char delete " + character["key"]}>
                                     <DeleteCharC character={character} />
-                                </td>}
-
+                                </td>
 
                             </tr>
                         )
@@ -70,7 +87,7 @@ function BossingTableP(props) {
                 </tbody>
 
             </table>
-            {editMode && <div><AddCharC /></div>}
+            <div><AddCharC /></div>
         </>
     );
 }

@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 import { statesContext } from "../../Bossing";
 import PresetTableP from "../presentational/PresetTableP";
-import { bossData } from "../../BossingData";
+import { bossData } from "../../../../constants/BossData";
 
 function PresetTableC(props) {
     const { presets, editMode } = useContext(statesContext);

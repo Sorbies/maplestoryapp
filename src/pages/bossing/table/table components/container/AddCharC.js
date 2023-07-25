@@ -1,7 +1,7 @@
 import { useState, useContext } from "react";
 import { statesContext } from "../../../Bossing"; //states
 import AddCharP from "../presentational/AddCharP";
-import { bossData } from "../../../BossingData";
+import { bossData } from "../../../../../constants/BossData";
 
 function AddCharC(props) {
     //hooks

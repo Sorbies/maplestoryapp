@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"; //hooks
 import { statesContext } from "../../../Bossing"; //states
 import AddPresetP from "../presentational/AddPresetP";
-import { bossData } from "../../../BossingData";
+import { bossData } from "../../../../../constants/BossData";
 
 function AddPresetC(props) {
     const [newName, setNewName] = useState(""); //state hook for the new character
