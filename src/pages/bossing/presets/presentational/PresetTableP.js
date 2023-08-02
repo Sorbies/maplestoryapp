@@ -5,7 +5,7 @@ import ChangeDifficultyC from "../preset components/container/ChangeDifficultyC"
 import DeletePresetC from "../preset components/container/DeletePresetC";
 import PresetNameC from "../preset components/container/PresetNameC";
 import { bossData } from "../../../../constants/BossData"; //constants
-import styles from "../../table/style/tables.module.css";//styles
+import styles from "../../../../styles/tables.module.css";//styles
 
 
 function PresetTableP(props) {

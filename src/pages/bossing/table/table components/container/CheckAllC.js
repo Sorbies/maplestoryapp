@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react";
 import { statesContext } from "../../../Bossing";
 import CheckAllP from "../presentational/CheckAllP";
-import styles from "../style/buttons.module.css";
+import styles from "../../../../../styles/buttons.module.css";
 
 function CheckAllC(props) {
     const { characters, setCharacters } = useContext(statesContext);
@@ -28,7 +28,7 @@ function CheckAllC(props) {
         newStyle += allTrue ? styles.notDone : styles.clear;
         setStyle(newStyle);
         setButtonText(allTrue ? "✖ All" : "✔ All");
-    })
+    }, [allTrue])
 
     const toggleAllBoxes = () => {
         let charIndex = characters.indexOf(props.character);

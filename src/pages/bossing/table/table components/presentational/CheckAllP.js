@@ -1,7 +1,4 @@
-import styles from "../style/buttons.module.css";
-
 function CheckAllP(props) {
-    const buttonStyle = styles.btn + " " + styles.normal;
 
     return (
         <>

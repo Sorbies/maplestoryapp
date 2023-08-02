@@ -1,6 +1,6 @@
 import { useState, useEffect, useContext } from "react";
 import { statesContext } from "../../../Bossing";
-import styles from "../style/buttons.module.css";
+import styles from "../../../../../styles/buttons.module.css";
 
 function ChangePresetP(props) {
     const [ showDrop, setShowDrop ] = useState(false);
@@ -21,7 +21,7 @@ function ChangePresetP(props) {
                 dropdownContent.style.display = "none";
             }
         }
-    }, [showDrop]);
+    }, [showDrop, props.character]);
 
     const toggleShowDrop = () => {
         setShowDrop((prev) => !prev);

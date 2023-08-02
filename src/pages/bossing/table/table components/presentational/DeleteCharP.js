@@ -1,4 +1,4 @@
-import styles from "../style/buttons.module.css";
+import styles from "../../../../../styles/buttons.module.css";
 
 function DeleteCharP(props) {
     const style = styles.btn + " " + styles.normal;

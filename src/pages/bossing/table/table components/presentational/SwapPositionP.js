@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { statesContext } from "../../../Bossing";
-import styles from "../style/buttons.module.css";
+import styles from "../../../../../styles/buttons.module.css";
 
 function SwapPositionP(props) {
     const style = styles.btn;

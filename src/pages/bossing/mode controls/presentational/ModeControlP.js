@@ -1,6 +1,6 @@
 import { useContext } from "react";
 import { statesContext } from "../../Bossing";
-import styles from "../../table/table components/style/buttons.module.css";
+import styles from "../../../../styles/buttons.module.css";
 
 function ModeControlP(props) {
     const { editMode, presetMode } = useContext(statesContext);

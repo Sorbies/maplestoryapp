@@ -4,6 +4,9 @@ Bossing:
 - Refactor the app to use don's layers strat, then try to merge components that apply to both presets and bossingtable
 - Make swap buttons not have the pointer
 - delete edit mode
+- Turn characters and presets into classes
+- name effect hooks
+- put the presentational logic back into p components, not c
 
 Dailies:
 

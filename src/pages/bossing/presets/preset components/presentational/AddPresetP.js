@@ -1,4 +1,4 @@
-import styles from "../../../table/table components/style/buttons.module.css";
+import styles from "../../../../../styles/buttons.module.css";
 
 function AddPresetP(props) {
     const style = styles.normal;

@@ -1,7 +1,7 @@
 import { useState, useEffect, useContext } from "react"; //hooks
 import { statesContext } from "../../../Bossing"; //states
 import ChangeProgressP from "../presentational/ChangeProgressP"; //css
-import styles from "../style/buttons.module.css";
+import styles from "../../../../../styles/buttons.module.css";
 import { bossData } from "../../../../../constants/BossData";
 
 function ChangeProgressC(props) {

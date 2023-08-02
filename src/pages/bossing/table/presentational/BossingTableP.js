@@ -8,7 +8,7 @@ import CheckAllC from "../table components/container/CheckAllC";
 import DeleteCharC from "../table components/container/DeleteCharC";
 import SwapPositionC from "../table components/container/SwapPositionC";
 import { bossData } from "../../../../constants/BossData"; //constants
-import styles from "../style/tables.module.css"; //styles
+import styles from "../../../../styles/tables.module.css"; //styles
 
 function BossingTableP(props) {
     //states
