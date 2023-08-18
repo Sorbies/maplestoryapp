@@ -8,11 +8,11 @@ function BossingCalculations(props) {
 
     const calcCurrentIncome = () => {
         let income = 0;
-        for (const character of characters) {
+        for (const character of characters.getCharacters()) {
             for (const boss in bossData) {
-                let preset = presets.filter(prst => {return prst.name === character["preset"]})[0]
-                let difficulty = preset["content"][boss]
-                if (character["progress"][boss]) {
+                let preset = presets.findPresetByName(character.getPreset());
+                let difficulty = preset.getBossDifficulty(boss);
+                if (character.getBossStatus(boss)) {
                     income += bossData[boss]["prices"][difficulty];
                 }
             }
@@ -21,10 +21,10 @@ function BossingCalculations(props) {
     }
     const calcMaxIncome = () => {
         let income = 0;
-        for (const character of characters) {
+        for (const character of characters.getCharacters()) {
             for (const boss in bossData) {
-                let preset = presets.filter(prst => {return prst.name === character["preset"]})[0]
-                let difficulty = preset["content"][boss]
+                let preset = presets.findPresetByName(character.getPreset());
+                let difficulty = preset.getBossDifficulty(boss);
                 if (difficulty > 0) {
                     income += bossData[boss]["prices"][difficulty];
                 }
@@ -34,9 +34,10 @@ function BossingCalculations(props) {
     }
     const countCurrentCrystals = () => {
         let count = 0;
-        for (const character of characters) {
+        for (const character of characters.getCharacters()) {
+            let preset = presets.findPresetByName(character.getPreset());
             for (const boss in bossData) {
-                if (character["progress"][boss]) {
+                if (character.getBossStatus(boss) && preset.getBossDifficulty(boss) !== 0) {
                     count += 1;
                 }
             }
@@ -45,10 +46,10 @@ function BossingCalculations(props) {
     }
     const countMaxCrystals = () => {
         let count = 0;
-        for (const character of characters) {
+        for (const character of characters.getCharacters()) {
             for (const boss in bossData) {
-                let preset = presets.filter(prst => {return prst.name === character["preset"]})[0]
-                let difficulty = preset["content"][boss]
+                let preset = presets.findPresetByName(character.getPreset());
+                let difficulty = preset.getBossDifficulty(boss);
                 if (difficulty > 0) {
                     count += 1;
                 }

@@ -49,3 +49,10 @@ Data Structure choices
 
 Images in react
  - Put the assets in the public folder or import them into your file
+
+Using custom classes with local storage
+ - Local storage only stores strings, which you obtain by using JSON.stringify() on an object.
+ - However, turning an object from a custom class into a string and back using JSON.stringify() and JSON.parse() will turn it into just a generic object.
+ - This generic object will now forget the special methods you put in the custom class originally, causing errors when retrieving from the local storage any time you call those methods.
+ - To solve this issue, you have to code custom toJSON() and fromJSON() methods for your class so the generic object can remember what it is.
+ - The fromJSON() method should return a new object of that class type.

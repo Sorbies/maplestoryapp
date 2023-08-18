@@ -4,7 +4,7 @@ import CheckAllP from "../presentational/CheckAllP";
 import styles from "../../../../../styles/buttons.module.css";
 
 function CheckAllC(props) {
-    const { characters, setCharacters } = useContext(statesContext);
+    const { characters, setCharacters, presets } = useContext(statesContext);
     const [allTrue, setAllTrue] = useState(false);
     const [style, setStyle] = useState(styles.btn);
     const [buttonText, setButtonText] = useState("Default");
@@ -12,13 +12,13 @@ function CheckAllC(props) {
     //hook that maintains allTrue's trueness whenever a character progress update happens
     useEffect(() => {
         let checkingAllTrue = true;
-        for (const boss in props.character["progress"]) {
-            if (!props.character["progress"][boss]) {
+        let preset = presets.findPresetByName(props.character.getPreset());
+        for (const boss in props.character.getProgress()) {
+            if (!props.character.getBossStatus(boss) && preset.getBossDifficulty(boss) !== 0) {
                 checkingAllTrue = false;
                 break;
             }
         }
-
         setAllTrue(checkingAllTrue);
     }, [props.character])
 
@@ -31,17 +31,20 @@ function CheckAllC(props) {
     }, [allTrue])
 
     const toggleAllBoxes = () => {
-        let charIndex = characters.indexOf(props.character);
-        let newCharacters = structuredClone(characters);
+        let newCharacters = characters.copy();
+        let relevantCharacter = newCharacters.findCharacter(props.character);
 
         if (allTrue) {
-            for (const boss in newCharacters[charIndex]["progress"]) {
-                newCharacters[charIndex]["progress"][boss] = false;
+            for (const boss in relevantCharacter.getProgress()) {
+                relevantCharacter.setBossStatus(boss, false);
             }
         }
         else {
-            for (const boss in newCharacters[charIndex]["progress"]) {
-                newCharacters[charIndex]["progress"][boss] = true;
+            for (const boss in relevantCharacter.getProgress()) {
+                let preset = presets.findPresetByName(props.character.getPreset());
+                if (preset.getBossDifficulty(boss) !== 0) {
+                    relevantCharacter.setBossStatus(boss, true);
+                }
             }            
         }
         

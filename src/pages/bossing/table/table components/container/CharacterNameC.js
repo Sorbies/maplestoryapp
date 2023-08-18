@@ -8,9 +8,9 @@ function CharacterNameC(props) {
 
     //functions
     const handleNameChange = (e) => {
-        let charIndex = characters.indexOf(props.character);
-        let newCharacters = structuredClone(characters);
-        newCharacters[charIndex]["name"] = e.target.value;
+        let newCharacters = characters.copy();
+        let relevantCharacter = newCharacters.findCharacter(props.character);
+        relevantCharacter.setName(e.target.value);
 
         setCharacters(newCharacters);
     }

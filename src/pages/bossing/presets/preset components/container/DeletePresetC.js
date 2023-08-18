@@ -9,14 +9,15 @@ function DeletePresetC(props) {
     //functions
     //Deletes an entry from the states when a user delets a character
     const deletePreset = (preset) => {
-        let newPresets = presets.filter((prst) => prst !== preset);
+        let newPresets = presets.copy();
+        newPresets.deletePreset(preset);
 
         //replace instances of the old preset with none preset
-        let oldPreset = preset["name"];
-        let newCharacters = structuredClone(characters);
-        for (let character of newCharacters) {
-            if (character["preset"] === oldPreset) {
-                character["preset"] = "None";
+        let oldPresetName = preset.getName();
+        let newCharacters = characters.copy();
+        for (let character of newCharacters.getCharacters()) {
+            if (character.getPreset() === oldPresetName) {
+                character.setPreset("None");
             }
         }
 

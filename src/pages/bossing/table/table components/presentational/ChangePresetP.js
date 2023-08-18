@@ -25,23 +25,22 @@ function ChangePresetP(props) {
 
     const toggleShowDrop = () => {
         setShowDrop((prev) => !prev);
-        console.log(showDrop);
     }
 
     return (
         <>
-            <button className={buttonStyle + " " + dropStyle} onClick={toggleShowDrop} key={"dropdown header " + props.character["key"]}>
-                {props.character["preset"] + " ˅"}
+            <button className={buttonStyle + " " + dropStyle} onClick={toggleShowDrop} key={"dropdown header " + props.character.getKey()}>
+                {props.character.getPreset() + " ˅"}
             </button> 
             <br />
 
-            <div className={dropContStyle} key={"dropdown content " + props.character["key"]} id={"dropdown content " + props.character["key"]}>
-                {presets.map((preset) => {
+            <div className={dropContStyle} key={"dropdown content " + props.character.getKey()} id={"dropdown content " + props.character.getKey()}>
+                {presets.getPresets().map((preset) => {
                     return (
                         <>
-                            <button className={buttonStyle} onClick={() => props.setCharPreset(preset)}
-                                key={"char preset " + props.character["key"] + " " + preset["key"]}
-                                id={"char preset " + props.character["key"] + " " + preset["key"]}>
+                            <button className={buttonStyle} onClick={() => props.setCharPreset(preset.getName())}
+                                key={"char preset " + props.character.getKey() + " " + preset.getKey()}
+                                id={"char preset " + props.character.getKey() + " " + preset.getKey()}>
                                 {preset["name"]}
                             </button> <br />
                         </>

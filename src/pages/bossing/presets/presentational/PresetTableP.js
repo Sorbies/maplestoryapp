@@ -27,20 +27,20 @@ function PresetTableP(props) {
                 </thead>
 
                 <tbody>
-                    {presets.map((preset) => {
+                    {presets.getPresets().map((preset) => {
                         return (
                             <>
-                                {(preset["name"] !== "None") && <tr key={"row " + preset["key"]}>
+                                {(preset.getName() !== "None") && <tr key={"row " + preset["key"]}>
                                     <td className={tableStyle} key={"preset cell " + preset["key"]}>
                                         <PresetNameC preset={preset} />
                                     </td>
 
                                     {/* The checkboxes */}
-                                    {Object.keys(preset["content"]).map((boss) => {
-                                        let difficulty = preset["content"][boss];
+                                    {Object.keys(preset.getDifficulties()).map((boss) => {
+                                        let difficulty = preset.getBossDifficulty(boss);
 
                                         return (
-                                            <td className={tableStyle} key={"preset boss cell " + preset["key"] + " " + bossData[boss]["key"]}>
+                                            <td className={tableStyle} key={"preset boss cell " + preset.getKey() + " " + bossData[boss]["key"]}>
                                                 {bossData[boss]["modes"][difficulty]} <br />
                                                 <ChangeDifficultyC preset={preset} boss={boss} difficulty={0} />
                                                 <ChangeDifficultyC preset={preset} boss={boss} difficulty={1} />
@@ -54,7 +54,7 @@ function PresetTableP(props) {
                                     })}
 
                                     {/* The delete button */}
-                                    <td className={tableStyle} key={"preset delete " + preset["key"]}>
+                                    <td className={tableStyle} key={"preset delete " + preset.getKey()}>
                                         <DeletePresetC preset={preset} />
                                     </td>
                                 </tr>}

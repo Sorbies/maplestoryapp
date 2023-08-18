@@ -34,7 +34,7 @@ function BossingTableP(props) {
                         {Object.keys(bossData).map((boss) => {
                             return (
                                 <th className={tableStyle + " " + columnStyle} key={boss}>
-                                    <img className={bossStyle} src={bossData[boss]["img"]} alt={boss}/>
+                                    <img className={bossStyle} src={bossData[boss]["img"]} alt={boss} />
                                 </th>
                             )
                         })}
@@ -45,17 +45,17 @@ function BossingTableP(props) {
                 <tbody>
                     {/* Creates a row for each character, then data for the bosses they clear 
                     keys: c stands for char, b stands for boss, d stands for difficulty */}
-                    {characters.map((character) => {
+                    {characters.getCharacters().map((character) => {
                         return (
-                            <tr key={"row " + character["key"]}>
-                                <td className={tableStyle} key={"swap cell " + character["key"]}>
+                            <tr key={"row " + character.getKey()}>
+                                <td className={tableStyle} key={"swap cell " + character.getKey()}>
                                     <SwapPositionC character={character} />
                                 </td>
-                                <td className={tableStyle} key={"char cell " + character["key"]}>
+                                <td className={tableStyle} key={"char cell " + character.getKey()}>
                                     <CharacterNameC character={character} />
                                 </td>
-                                    
-                                <td className={tableStyle} key={"char preset cell " + character["key"]}>
+
+                                <td className={tableStyle} key={"char preset cell " + character.getKey()}>
                                     <ChangePresetC character={character} />
                                 </td>
 
@@ -65,10 +65,10 @@ function BossingTableP(props) {
 
                                 {/* The checkboxes */}
                                 {Object.keys(bossData).map((boss) => {
-                                    let preset = presets.filter(prst => { return prst.name === character["preset"] })[0]
-                                    let difficulty = preset["content"][boss];
+                                    let preset = presets.findPresetByName(character.getPreset());
+                                    let difficulty = preset.getBossDifficulty(boss);
                                     return (
-                                        <td className={tableStyle} key={"boss cell " + character["key"] + " " + bossData[boss]["key"]}>
+                                        <td className={tableStyle} key={"boss cell " + character.getKey() + " " + bossData[boss]["key"]}>
                                             {bossData[boss]["modes"][difficulty]} <br />
                                             <ChangeProgressC character={character} boss={boss} />
 
@@ -77,7 +77,7 @@ function BossingTableP(props) {
                                 })}
 
                                 {/* The delete button */}
-                                <td className={tableStyle} key={"char delete " + character["key"]}>
+                                <td className={tableStyle} key={"char delete " + character.getKey()}>
                                     <DeleteCharC character={character} />
                                 </td>
 

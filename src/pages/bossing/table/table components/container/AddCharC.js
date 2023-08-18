@@ -2,6 +2,7 @@ import { useState, useContext } from "react";
 import { statesContext } from "../../../Bossing"; //states
 import AddCharP from "../presentational/AddCharP";
 import { bossData } from "../../../../../constants/BossData";
+import { CharacterBossing } from "../../../../../data/bossing/CharacterBossing";
 
 function AddCharC(props) {
     //hooks
@@ -16,19 +17,10 @@ function AddCharC(props) {
 
     //Adds a new entry into all the states when user adds a new character
     const addNewChar = () => {
-        let newCharacters = structuredClone(characters);
+        let newCharacters = characters.copy();
+        let newCharacter = new CharacterBossing(newName, numC);
+        newCharacters.addCharacter(newCharacter);
 
-        let newProgress = {};
-        for (const boss in bossData) { newProgress[boss] = false; }
-
-        let newCharacter = {
-            name: newName,
-            key: numC,
-            preset: "None",
-            progress: newProgress
-        };
-
-        newCharacters.push(newCharacter);
         setCharacters(newCharacters);
         setNumC((prev) => prev + 1);
         setNewName("");

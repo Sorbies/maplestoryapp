@@ -1,7 +1,7 @@
 import { useState, useContext } from "react"; //hooks
 import { statesContext } from "../../../Bossing"; //states
 import AddPresetP from "../presentational/AddPresetP";
-import { bossData } from "../../../../../constants/BossData";
+import { Preset } from "../../../../../data/bossing/Preset";
 
 function AddPresetC(props) {
     const [newName, setNewName] = useState(""); //state hook for the new character
@@ -14,21 +14,17 @@ function AddPresetC(props) {
     }
 
     const addNewPreset = () => {
-        let newPresets = structuredClone(presets);
+        let newPresets = presets.copy();
+        console.log(newPresets);
+        let newPreset = new Preset(newName, numP);
+        newPresets.addPreset(newPreset);
+        console.log(newPresets);
 
-        let newContent = {}
-        for (const boss in bossData) { newContent[boss] = 0; }
-
-        let newPreset = {
-            name: newName,
-            key: numP,
-            content: newContent
-        }
-
-        newPresets.push(newPreset);
         setPresets(newPresets);
         setNumP((prev) => prev + 1);
         setNewName("");
+
+        //console.log(presets);
     }
 
     return (

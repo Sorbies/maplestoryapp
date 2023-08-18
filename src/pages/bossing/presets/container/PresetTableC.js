@@ -9,8 +9,8 @@ function PresetTableC(props) {
     //hooks
     //effect hook that disables buttons for invalid boss difficulties when new characters are added or when edit mode is turned on
     useEffect(() => {
-        for (const preset of presets) {
-            for (const boss in preset["content"]) {
+        for (const preset of presets.getPresets()) {
+            for (const boss in preset.getDifficulties()) {
                 for (let difficulty = 0; difficulty <= 4; difficulty++) {
                     if (bossData[boss]["modes"][difficulty] === null) {
                         let button = document.getElementById("preset diff " + preset["key"] + " " + bossData[boss]["key"] + " " + difficulty);
@@ -22,8 +22,7 @@ function PresetTableC(props) {
     }, [presets, editMode]);
     //effect hook that disables the up swap for the first preset and the down swap for the last preset
     useEffect(() => {
-        console.log("disabling edge case swap buttons")
-        for (let i = 0; i < presets.length; i++) {
+        for (let i = 0; i < presets.getLength(); i++) {
             let swapUpButton = document.getElementById("p" + i + "swapup");
             if (swapUpButton != null) swapUpButton.removeAttribute("disabled");
             let swapDownButton = document.getElementById("p" + i + "swapdown");

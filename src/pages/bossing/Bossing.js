@@ -3,6 +3,9 @@ import BossingCalculations from "./stats/container/BossingCalculations"; //compo
 import BossingTableC from "./table/container/BossingTableC";
 import PresetTableC from "./presets/container/PresetTableC";
 import ModeControlC from "./mode controls/container/ModeControlC";
+import { CharactersBossing } from "../../data/bossing/CharactersBossing";
+import { Presets } from "../../data/bossing/Presets";
+import { Preset } from "../../data/bossing/Preset";
 
 //This context will allow all components to access these main states
 export const statesContext = createContext();
@@ -32,39 +35,28 @@ function Bossing() {
     return [someState, setSomeState]
   }
 
-  const defaultPreset = {
-    name: "None",
-    key: 0,
-    content: {
-      "Hilla": 0,
-      "PB": 0,
-      "Cygnus": 0,
-      "PNo": 0,
-      "Zakum": 0,
-      "Pierre": 0,
-      "Von Bon": 0,
-      "C Queen": 0,
-      "Vellum": 0,
-      "Magnus": 0,
-      "Papulatus": 0,
-      "Akechi": 0,
-      "Lotus": 0,
-      "Damien": 0,
-      "GA Slime": 0,
-      "Lucid": 0,
-      "Will": 0,
-      "Gloom": 0,
-      "V Hilla": 0,
-      "Darknell": 0,
-      "Seren": 0,
-      "Kalos": 0,
-      "Kaling": 0,
-    }
+  //This hook is similar to the one above, but is meant for states that store custom classes.
+  //The object retrieved from local storage must be cast into that custom class again to regain its methods.
+  //So, the custom .fromJSON() method must be invoked.
+  function usePersistingStateforCustomClass(stateName, defaultValue, fromJSON) {
+    //init state, using local storage values if possible
+    const [someState, setSomeState] = useState(() => {
+      // checking for stored value
+      const saved = localStorage.getItem(stateName);
+      const initialValue = JSON.parse(saved);
+      return fromJSON(initialValue) || defaultValue;
+    });
+
+    //update local storage for someState whenever a change in someState is detected
+    useEffect(() => {
+      localStorage.setItem(stateName, JSON.stringify(someState));
+    }, [stateName, someState]);
+    return [someState, setSomeState]
   }
 
   //states
-  const [characters, setCharacters] = usePersistingState("characters", []); //hook for char names
-  const [presets, setPresets] = usePersistingState("presets", [defaultPreset]); //hook for char names
+  const [characters, setCharacters] = usePersistingStateforCustomClass("characters", new CharactersBossing(), CharactersBossing.fromJSON); //hook for char names
+  const [presets, setPresets] = usePersistingStateforCustomClass("presets", new Presets(), Presets.fromJSON); //hook for char names
   const [numC, setNumC] = usePersistingState("numC", 10);
   const [numP, setNumP] = usePersistingState("numP", 10); 
 
@@ -95,6 +87,9 @@ function Bossing() {
     let newContent = presetMode ? <PresetTableC /> : <BossingTableC />;
     setContent(newContent);
   }, [presetMode]);
+
+  //first time setup
+  if (presets.getLength() === 0) presets.addPreset(new Preset("None", 0));
 
   return (
     <statesContext.Provider value={statesData}>

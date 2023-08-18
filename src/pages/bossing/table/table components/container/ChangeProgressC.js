@@ -17,8 +17,8 @@ function ChangeProgressC(props) {
     //this effect hook determines what styling and text the progress button should display
     useEffect(() => {
         let newStyle = styles.btn + " ";
-        let preset = presets.filter(prst => {return prst.name === props.character["preset"]})[0]
-        if (preset["content"][props.boss] === 0) {
+        let preset = presets.findPresetByName(props.character.getPreset());
+        if (preset.getBossDifficulty(props.boss) === 0) {
             newStyle = styles.disabled; //do Not inherit btn if disabled
             setStyle(newStyle);
             setButtonText("🛇");
@@ -31,12 +31,12 @@ function ChangeProgressC(props) {
 
     //effect hook that disables the clear status button for skipped bosses
     useEffect(() => {
-        for (const character of characters) {
-            let preset = presets.filter(prst => {return prst.name === character["preset"]})[0]
+        for (const character of characters.getCharacters()) {
+            let preset = presets.findPresetByName(character.getPreset());
             for (const boss in bossData) {
-                let button = document.getElementById("progress button " + character["key"] + " " + bossData[boss]["key"]);
+                let button = document.getElementById("progress button " + character.getKey() + " " + bossData[boss]["key"]);
                 if (button != null) {
-                    if (preset["content"][boss] === 0) {
+                    if (preset.getBossDifficulty(props.boss) === 0) {
                         button.setAttribute("disabled", true);
                     } else {
                         button.removeAttribute("disabled");
@@ -49,9 +49,9 @@ function ChangeProgressC(props) {
     //functions
     //This function will allow updating the clear status of the character's bosses.
     const handleCharProgress = (character, boss) => {
-        let charIndex = characters.indexOf(character);
-        let newCharacters = structuredClone(characters);
-        newCharacters[charIndex]["progress"][boss] = !newCharacters[charIndex]["progress"][boss];
+        let newCharacters = characters.copy();
+        let relevantCharacter = newCharacters.findCharacter(character);
+        relevantCharacter.setBossStatus(boss, !relevantCharacter.getBossStatus(boss))
         setCharacters(newCharacters);
     }
 

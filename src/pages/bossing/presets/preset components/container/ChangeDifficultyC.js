@@ -13,9 +13,9 @@ function ChangeDifficultyC(props) {
     //functions
     //Updates the clear difficulty a character does for that boss
     const handleDifficulty = (difficulty, preset, boss) => {
-        let newPresets = structuredClone(presets);
-        const presetIndex = presets.indexOf(preset);
-        newPresets[presetIndex]["content"][boss] = difficulty;
+        let newPresets = presets.copy();
+        const presetIndex = presets.findIndexOfPreset(preset);
+        newPresets.findPresetByIndex(presetIndex).setBossDifficulty(boss, difficulty);
 
         setPresets(newPresets);
     }

@@ -139,7 +139,7 @@
       key: 22,
       img: "assets/kaling.png",
       modes: ["None", "Easy", "Normal", "Chaos", "Extreme"],
-      prices: [-1, -1, -1, -1, -1]
+      prices: [0, -1, -1, -1, -1]
     },
     
   }

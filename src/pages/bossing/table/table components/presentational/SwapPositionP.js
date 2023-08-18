@@ -5,7 +5,7 @@ import styles from "../../../../../styles/buttons.module.css";
 function SwapPositionP(props) {
     const style = styles.btn;
     const { characters } = useContext(statesContext);
-    const position = characters.indexOf(props.character)
+    const position = characters.findIndexOfCharacter(props.character)
     return (
         <>
             <button id={"c" + position + "swapup"}   className={style} onClick={() => props.swapUp(props.character)}>˄</button>

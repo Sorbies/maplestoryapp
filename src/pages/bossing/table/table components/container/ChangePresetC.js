@@ -5,10 +5,10 @@ import ChangePresetP from "../presentational/ChangePresetP";
 function ChangePresetC(props) {
     const { characters, setCharacters } = useContext(statesContext);
 
-    function setCharPreset(preset) {
-        let newCharacters = structuredClone(characters);
-        let charIndex = characters.indexOf(props.character);
-        newCharacters[charIndex]["preset"] = preset["name"];
+    function setCharPreset(presetName) {
+        let newCharacters = characters.copy();
+        let relevantCharacter = newCharacters.findCharacter(props.character);
+        relevantCharacter.setPreset(presetName);
         setCharacters(newCharacters);
     }
 

@@ -8,7 +8,7 @@ function SwapPositionC(props) {
 
     //effect hook that disables the up swap for the first character and the down swap for the last character
     useEffect(() => {
-        for (let i = 0; i < characters.length; i++) {
+        for (let i = 0; i < characters.getLength(); i++) {
             let swapUpButton = document.getElementById("c" + i + "swapup");
             if (swapUpButton != null) swapUpButton.removeAttribute("disabled");
             let swapDownButton = document.getElementById("c" + i + "swapdown");
@@ -16,7 +16,7 @@ function SwapPositionC(props) {
         }
 
         let firstButtonUp = document.getElementById("c" + 0 + "swapup");
-        let lastButtonDown = document.getElementById("c" + (characters.length - 1) + "swapdown");
+        let lastButtonDown = document.getElementById("c" + (characters.getLength() - 1) + "swapdown");
 
         if (firstButtonUp != null && lastButtonDown != null) {
             firstButtonUp.setAttribute("disabled", true);
@@ -26,25 +26,18 @@ function SwapPositionC(props) {
     }, [characters]);
 
     //functions
-    //generic swap function for two items in an array
-    const swap = (index1, index2, container) => {
-        if (index1 >= 0 && index1 < container.length && index2 >= 0 && index2 < container.length) {
-            [container[index1], container[index2]] = [container[index2], container[index1]];
-        }
-    }
-
     //swap current char state info with that of previous. Edge case is handled in swap
     const swapUp = (character) => {
-        let charIndex = characters.indexOf(character);
-        let newCharacters = structuredClone(characters);
-        swap(charIndex, charIndex - 1, newCharacters);
+        let newCharacters = characters.copy();
+        let charIndex = newCharacters.findIndexOfCharacter(character);
+        newCharacters.swap(charIndex, charIndex - 1);
         setCharacters(newCharacters);
     }
     //swap current char state info with that of next. Edge case is handled in swap
     const swapDown = (character) => {
-        let charIndex = characters.indexOf(character);
-        let newCharacters = structuredClone(characters);
-        swap(charIndex, charIndex + 1, newCharacters);
+        let newCharacters = characters.copy();
+        let charIndex = newCharacters.findIndexOfCharacter(character);
+        newCharacters.swap(charIndex, charIndex + 1);
         setCharacters(newCharacters);
     }
 

@@ -8,16 +8,16 @@ function PresetNameC(props) {
 
     //functions
     const handleNameChange = (e) => {
-        let newPresets = structuredClone(presets);
-        let presetIndex = presets.indexOf(props.preset);
-        newPresets[presetIndex]["name"] = e.target.value;
+        let newPresets = presets.copy();
+        let presetIndex = presets.findIndexOfPreset(props.preset);
+        newPresets.findPresetByIndex(presetIndex).setName(e.target.value);
 
         //replace instances of the old name with the new name
-        let oldPreset = props.preset["name"];
-        let newCharacters = structuredClone(characters);
-        for (let character of newCharacters) {
-            if (character["preset"] === oldPreset) {
-                character["preset"] = e.target.value;
+        let oldPresetName = props.preset.getName();
+        let newCharacters = characters.copy();
+        for (let character of newCharacters.getCharacters()) {
+            if (character.getPreset() === oldPresetName) {
+                character.setPreset(e.target.value);
             }
         }
 

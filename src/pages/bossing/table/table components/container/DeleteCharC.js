@@ -9,7 +9,8 @@ function DeleteCharC(props) {
     //functions
     //Deletes an entry from the states when a user delets a character
     const deleteChar = (character) => {
-        let newCharacters = characters.filter((char) => char !== character);
+        let newCharacters = characters.copy();
+        newCharacters.deleteCharacter(character);
         setCharacters(newCharacters);
     }
 
