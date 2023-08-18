@@ -8,8 +8,8 @@ function SwapPositionP(props) {
     const position = characters.findIndexOfCharacter(props.character)
     return (
         <>
-            <button id={"c" + position + "swapup"}   className={style} onClick={() => props.swapUp(props.character)}>˄</button>
-            <button id={"c" + position + "swapdown"} className={style} onClick={() => props.swapDown(props.character)}>˅</button>
+            <button key={"c" + position + "swapup"}   id={"c" + position + "swapup"}   className={style} onClick={() => props.swapUp(props.character)}>˄</button>
+            <button key={"c" + position + "swapdown"} id={"c" + position + "swapdown"} className={style} onClick={() => props.swapDown(props.character)}>˅</button>
         </>
     );
 }

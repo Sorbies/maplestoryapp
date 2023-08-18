@@ -56,3 +56,7 @@ Using custom classes with local storage
  - This generic object will now forget the special methods you put in the custom class originally, causing errors when retrieving from the local storage any time you call those methods.
  - To solve this issue, you have to code custom toJSON() and fromJSON() methods for your class so the generic object can remember what it is.
  - The fromJSON() method should return a new object of that class type.
+
+ Using controller/presentational properly
+  - Controllers should access/update states and contexts, make API calls, view the database, and cause side effects
+  - Presentationals should not know context or make side effects (no useEffect or useContext), but can access data/have its own state for UI purposes.

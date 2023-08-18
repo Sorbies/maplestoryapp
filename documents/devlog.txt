@@ -1,5 +1,8 @@
 2023-08-18:
     - Finished refactoring data structures (presets and characters) to use classes
+    - Individualized edit mode for each name component instead of having one large edit mode
+    - Swap buttons for presets
+    - Documentation up to ChangeDifficultyC.js in presets
 
 2023-08-02:
     - Reorganizing projects' folder structure

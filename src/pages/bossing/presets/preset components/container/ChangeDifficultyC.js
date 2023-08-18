@@ -1,17 +1,32 @@
-import { useContext } from "react"; //hooks
+import { useEffect, useContext } from "react"; //hooks
 import { statesContext } from "../../../Bossing"; //states
 import ChangeDifficultyP from "../presentational/ChangeDifficultyP";
+import { bossData } from "../../../../../constants/BossData";
 
+//controller for the different difficulty modes for each boss
 function ChangeDifficultyC(props) {
 
-    //states
+    //fetch needed states from context
     const { presets, setPresets } = useContext(statesContext);
+    
+    //effect hook to hide the difficulties of bosses that don't exist in the game, for each of the presets
+    useEffect(() => {
+        disableInvalidBossDifficulties();
+    }, [presets]);
+    const disableInvalidBossDifficulties = () => {
+        for (const preset of presets.getPresets()) {
+            for (const boss in preset.getDifficulties()) {
+                for (let difficulty = 0; difficulty <= 4; difficulty++) {
+                    if (bossData[boss]["modes"][difficulty] === null) {
+                        let button = document.getElementById("preset diff " + preset["key"] + " " + bossData[boss]["key"] + " " + difficulty);
+                        if (button != null) button.setAttribute("hidden", true);
+                    }
+                }
+            }
+        }        
+    }
 
-    //variables
-    let symbol;
-
-    //functions
-    //Updates the clear difficulty a character does for that boss
+    //function that updates the preset with the new desired difficulty to clear for a given boss
     const handleDifficulty = (difficulty, preset, boss) => {
         let newPresets = presets.copy();
         const presetIndex = presets.findIndexOfPreset(preset);
@@ -20,7 +35,8 @@ function ChangeDifficultyC(props) {
         setPresets(newPresets);
     }
 
-    //script
+    //determine what to display for the button given the difficulty it corresponds to
+    let symbol;
     switch (props.difficulty) {
         case 0:
             symbol = "∅";

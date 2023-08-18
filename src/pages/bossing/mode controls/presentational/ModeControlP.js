@@ -2,19 +2,19 @@ import { useContext } from "react";
 import { statesContext } from "../../Bossing";
 import styles from "../../../../styles/buttons.module.css";
 
+//Presentation for enabling/disabling modes
 function ModeControlP(props) {
-    const { editMode, presetMode } = useContext(statesContext);
+    
+    //fetch needed states from context
+    const { presetMode } = useContext(statesContext);
+
     const style = styles.normal;
 
     return (
         <>
-            {/* Edit button */}
-            <button className={style} onClick={() => props.toggleEditing()}>
-                {editMode ? "Disable Edit Mode" : "Enable Edit Mode"}
-            </button>
-            {/* Preset button */}
+            {/* Preset button, text changes based on mode */}
             <button className={style} onClick={() => props.togglePreset()}>
-                {presetMode ? "Return to Character Sheet" : "Edit Presets"}
+                {presetMode ? "View Characters" : "View Presets"}
             </button>
         </>
     );

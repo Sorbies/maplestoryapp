@@ -2,20 +2,19 @@ import { useContext } from "react"; //hooks
 import { statesContext } from "../../Bossing"; //states
 import ModeControlP from "../presentational/ModeControlP"; //components
 
+//Controller for enabling/disabling modes
 function ModeControlC(props) {
-    const { setEditMode, setPresetMode } = useContext(statesContext);
 
-    //functions
-    const toggleEditing = () => {
-        setEditMode((prev) => !prev);
-    }
+    //fetch needed states from context
+    const { setPresetMode } = useContext(statesContext);
 
+    //method to toggle preset mode
     const togglePreset = () => {
         setPresetMode((prev) => !prev);
     }
 
     return (
-        <ModeControlP toggleEditing={toggleEditing} togglePreset={togglePreset}/>
+        <ModeControlP togglePreset={togglePreset} />
     );
 }
 

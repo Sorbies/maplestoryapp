@@ -3,33 +3,37 @@ import { statesContext } from "../../../Bossing"; //states
 import AddPresetP from "../presentational/AddPresetP";
 import { Preset } from "../../../../../data/bossing/Preset";
 
+//controller for adding a new preset
 function AddPresetC(props) {
-    const [newName, setNewName] = useState(""); //state hook for the new character
+    //state to store the new name being entered by user
+    const [newName, setNewName] = useState("");
+
+    //fetch needed states from context
     const { presets, setPresets, numP, setNumP } = useContext(statesContext);
 
-    //functions
-    //Keeps track of input in the add new character field
+    //function that constantly stores the user input in the state
     const handleNewName = (e) => {
         setNewName(e.target.value);
     }
 
+    //function that adds the new preset to the local storage
     const addNewPreset = () => {
+
+        //first deep copy before changing the state
         let newPresets = presets.copy();
-        console.log(newPresets);
+
+        //add the new preset to the copy
         let newPreset = new Preset(newName, numP);
         newPresets.addPreset(newPreset);
-        console.log(newPresets);
 
-        setPresets(newPresets);
-        setNumP((prev) => prev + 1);
-        setNewName("");
-
-        //console.log(presets);
+        setPresets(newPresets);        //set state to new copy
+        setNumP((prev) => prev + 1);   //update numP for key purposes
+        setNewName("");                //reset the name
     }
 
     return (
         <>
-            <AddPresetP newName={newName} handleNewName={handleNewName} addNewPreset={addNewPreset}/>
+            <AddPresetP newName={newName} handleNewName={handleNewName} addNewPreset={addNewPreset} />
         </>
     );
 }

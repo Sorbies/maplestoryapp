@@ -69,14 +69,12 @@ function Bossing() {
     presets: presets,
     numC: numC,
     numP: numP,
-    editMode: editMode,
     presetMode: presetMode,
 
     setCharacters: setCharacters,
     setPresets: setPresets,
     setNumC: setNumC,
     setNumP: setNumP,
-    setEditMode: setEditMode,
     setPresetMode: setPresetMode,
   }
   //******************** */

@@ -1,6 +1,5 @@
-  //This array contains the available difficulties for each boss.
-  //indexes from left to right: skip(1), easy(2), normal(3), chaos/hard(4), extreme(5).
-  //0 = that mode doesn't exist for the boss. 1 = it does
+//Boss data
+//If mode is null, that difficulty doesn't exist for that boss.
 
   export const bossData = {
     "Hilla": {
