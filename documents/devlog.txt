@@ -1,3 +1,9 @@
+2023-08-20:
+    - Added boss pics to preset table
+    - Prevented preset difficulty buttons from wrapping
+    - Put effect hook contents in named functions
+    - More documentation
+
 2023-08-18:
     - Finished refactoring data structures (presets and characters) to use classes
     - Individualized edit mode for each name component instead of having one large edit mode

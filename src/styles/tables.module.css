@@ -10,3 +10,7 @@
 .bosses {
     height: 40px;
 }
+
+.difficulties {
+    white-space: nowrap;
+}

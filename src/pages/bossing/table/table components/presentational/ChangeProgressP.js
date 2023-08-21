@@ -1,7 +1,14 @@
 import { bossData } from "../../../../../constants/BossData";
 
+//presentation that changes clear status of a boss for a character
+/* props: 
+    character: the character this component belongs to
+    boss: the boss this component corresponds to
+    style: style of the button
+    buttonText: content of the button
+*/
 function ChangeProgressP(props) {
-    //variables
+    
     const id = "progress button " + props.character.getKey() + " " + bossData[props.boss]["key"];
 
     return (

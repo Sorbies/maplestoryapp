@@ -1,7 +1,6 @@
-import { useEffect, useContext } from "react"; //hooks
-import { statesContext } from "../../Bossing";
 import BossingTableP from "../presentational/BossingTableP"; //components
 
+//controller for the table of characters
 function BossingTableC(props) {
     return (
         <>

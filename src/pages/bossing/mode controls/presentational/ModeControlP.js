@@ -3,8 +3,11 @@ import { statesContext } from "../../Bossing";
 import styles from "../../../../styles/buttons.module.css";
 
 //Presentation for enabling/disabling modes
+/* props: 
+    togglePreset: function that switches presetMode state
+*/
 function ModeControlP(props) {
-    
+
     //fetch needed states from context
     const { presetMode } = useContext(statesContext);
 

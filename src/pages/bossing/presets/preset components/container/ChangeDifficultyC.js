@@ -4,6 +4,11 @@ import ChangeDifficultyP from "../presentational/ChangeDifficultyP";
 import { bossData } from "../../../../../constants/BossData";
 
 //controller for the different difficulty modes for each boss
+/* props: 
+    preset: the specific preset that corresponds to this button. passed down to presentation
+    boss: the specific boss that corresponds to this button. passed down to presentation
+    difficulty: the specific difficulty that corresponds to this button. used to display text
+*/
 function ChangeDifficultyC(props) {
 
     //fetch needed states from context

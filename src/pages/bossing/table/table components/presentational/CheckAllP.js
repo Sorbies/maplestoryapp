@@ -1,3 +1,10 @@
+//presentation for the checking all bosses button
+/* props: 
+    character: the character this component belongs to
+    style: the button style
+    buttonText: the content of the button
+    toggleAllBoxes: function that checks all the boxes
+*/
 function CheckAllP(props) {
 
     return (

@@ -14,7 +14,11 @@ function PresetTableP(props) {
     //fetch needed states from context
     const { presets } = useContext(statesContext);
 
+    //fetch needed css styles
     const tableStyle = styles.table;
+    const bossStyle = styles.bosses;
+    const columnStyle = styles.column;
+    const difficultiesStyle = styles.difficulties;
 
     return (
         <>
@@ -25,7 +29,14 @@ function PresetTableP(props) {
                     <tr>
                         <th></th>
                         <th className={tableStyle}>Preset</th>
-                        {Object.keys(bossData).map((boss) => <th className={tableStyle} key={boss}>{boss}</th>)} 
+                        {/* boss columns */}
+                        {Object.keys(bossData).map((boss) => {
+                            return (
+                                <th className={tableStyle + " " + columnStyle} key={boss}>
+                                    <img className={bossStyle} src={bossData[boss]["img"]} alt={boss} />
+                                </th>
+                            )
+                        })} 
                         <th className={tableStyle}>Delete</th>
                     </tr>
                 </thead>
@@ -36,7 +47,7 @@ function PresetTableP(props) {
                         return (
                             <>
                                 {/* hide just the default "None" row that isn't meant to be changed */}
-                                {(preset.getName() !== "None") && <tr key={"row " + preset["key"]}>
+                                { preset.getName() !== "None" ? <tr key={"row " + preset["key"]}>
 
                                     {/* first column - swap position buttons */}
                                     <td className={tableStyle} key={"swap cell " + preset.getKey()}>
@@ -53,7 +64,7 @@ function PresetTableP(props) {
                                         let difficulty = preset.getBossDifficulty(boss);
 
                                         return (
-                                            <td className={tableStyle} key={"preset boss cell " + preset.getKey() + " " + bossData[boss]["key"]}>
+                                            <td className={tableStyle + " " + difficultiesStyle} key={"preset boss cell " + preset.getKey() + " " + bossData[boss]["key"]}>
                                                 {bossData[boss]["modes"][difficulty]} <br />
                                                 <ChangeDifficultyC preset={preset} boss={boss} difficulty={0} />
                                                 <ChangeDifficultyC preset={preset} boss={boss} difficulty={1} />
@@ -70,7 +81,7 @@ function PresetTableP(props) {
                                     <td className={tableStyle} key={"preset delete " + preset.getKey()}>
                                         <DeletePresetC preset={preset} />
                                     </td>
-                                </tr>}
+                                </tr>: null}
 
                             </>
                         )

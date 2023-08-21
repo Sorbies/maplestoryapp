@@ -3,9 +3,13 @@ import { statesContext } from "../../Bossing"; //contexts
 import BossingStats from "../presentational/BossingStats"; //components
 import { bossData } from "../../../../constants/BossData"; //constants
 
+//controller that calculates bossing statistics
 function BossingCalculations(props) {
-    const { characters, presets } = useContext(statesContext); //retrieve necessary states
 
+    //fetch needed states from context
+    const { characters, presets } = useContext(statesContext);
+
+    //function that calculates the current accrued income based on the already cleared bosses
     const calcCurrentIncome = () => {
         let income = 0;
         for (const character of characters.getCharacters()) {
@@ -19,6 +23,7 @@ function BossingCalculations(props) {
         }
         return income;
     }
+    //function that calculates the max income possible if all available bosses are cleared
     const calcMaxIncome = () => {
         let income = 0;
         for (const character of characters.getCharacters()) {
@@ -32,6 +37,7 @@ function BossingCalculations(props) {
         }
         return income;
     }
+    //function that counts the number of boss crystals sold based on already cleared bosses
     const countCurrentCrystals = () => {
         let count = 0;
         for (const character of characters.getCharacters()) {
@@ -44,6 +50,7 @@ function BossingCalculations(props) {
         }
         return count;
     }
+    //function that counts the max number of boss crystals of all available bosses
     const countMaxCrystals = () => {
         let count = 0;
         for (const character of characters.getCharacters()) {

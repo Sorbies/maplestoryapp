@@ -1,14 +1,12 @@
 Bossing:
-- Document code better
 - Add a way for users to export and import their character sheets
 - Refactor the app to use don's layers strat, then try to merge components that apply to both presets and bossingtable (the P can be merged, but the C might not)
 - Make swap buttons not have the pointer
 - Account for party size
-- name effect hooks
-- Organize P and C components
 - maybe think of a superclass that character/preset inherits from
 - Add character avatars to the table
 - Add a reset button for all bosses -> make this happen automatically every weekly reset
+- Add a clear local storage button
 
 Dailies:
 

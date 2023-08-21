@@ -13,9 +13,6 @@ export const statesContext = createContext();
 function Bossing() {
   //localStorage.clear();
 
-  //Global stuff
-  //******************** */
-  //hooks
   //This custom hook sets up a state that can remember what it was through refreshes of the app.
   //stateName: must be the string of the intended stateName, for localStorage key making
   //defaultValue: the value to init state with should there be no pre-existing localStorage
@@ -54,13 +51,14 @@ function Bossing() {
     return [someState, setSomeState]
   }
 
-  //states
-  const [characters, setCharacters] = usePersistingStateforCustomClass("characters", new CharactersBossing(), CharactersBossing.fromJSON); //hook for char names
-  const [presets, setPresets] = usePersistingStateforCustomClass("presets", new Presets(), Presets.fromJSON); //hook for char names
+  //states that store the user's characters and presets
+  const [characters, setCharacters] = usePersistingStateforCustomClass("characters", new CharactersBossing(), CharactersBossing.fromJSON); 
+  const [presets, setPresets] = usePersistingStateforCustomClass("presets", new Presets(), Presets.fromJSON); 
+  //states that store numbers for key making purposes
   const [numC, setNumC] = usePersistingState("numC", 10);
   const [numP, setNumP] = usePersistingState("numP", 10); 
 
-  const [editMode, setEditMode] = useState(false);
+  //state that determines what table to display
   const [presetMode, setPresetMode] = useState(false);
 
   //context holder
@@ -77,14 +75,6 @@ function Bossing() {
     setNumP: setNumP,
     setPresetMode: setPresetMode,
   }
-  //******************** */
-
-  // //not global stuff
-  const [content, setContent] = useState(null);
-  useEffect(() => {
-    let newContent = presetMode ? <PresetTableC /> : <BossingTableC />;
-    setContent(newContent);
-  }, [presetMode]);
 
   //first time setup
   if (presets.getLength() === 0) presets.addPreset(new Preset("None", 0));
@@ -93,7 +83,7 @@ function Bossing() {
     <statesContext.Provider value={statesData}>
       <BossingCalculations />
       <ModeControlC />
-      {content}
+      {presetMode ? <PresetTableC /> : <BossingTableC />}
     </statesContext.Provider>
   );
 }

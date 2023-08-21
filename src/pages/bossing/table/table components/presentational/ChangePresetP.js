@@ -2,45 +2,40 @@ import { useState, useEffect, useContext } from "react";
 import { statesContext } from "../../../Bossing";
 import styles from "../../../../../styles/buttons.module.css";
 
+//presentation that changes the active preset of the character
+/* props: 
+    character: the character this component belongs to
+    setCharPreset: function that changes the char's active preset
+    toggleShowDrop: function that changes the state showDrop / dropdown visibility
+*/
 function ChangePresetP(props) {
-    const [ showDrop, setShowDrop ] = useState(false);
+    
+    //fetch needed states from context
     const { presets } = useContext(statesContext);
 
+    //fetch needed css styles
     const buttonStyle = styles.btn + " " + styles.normal;
     const dropStyle = styles.dropdown;
     const dropContStyle = styles["dropdown-content"];
 
-    //enables the dropdown contents to show or not
-    useEffect(() => {
-        const dropdownContent = document.getElementById("dropdown content " + props.character["key"]);
-        if (dropdownContent != null) {
-            if (showDrop) {
-                dropdownContent.style.display = "block";
-            }
-            else {
-                dropdownContent.style.display = "none";
-            }
-        }
-    }, [showDrop, props.character]);
-
-    const toggleShowDrop = () => {
-        setShowDrop((prev) => !prev);
-    }
+    const headerid = "dropdown header " + props.character.getKey();
+    const contentdiv = "dropdown content " + props.character.getKey();
 
     return (
         <>
-            <button className={buttonStyle + " " + dropStyle} onClick={toggleShowDrop} key={"dropdown header " + props.character.getKey()}>
+            {/* The current preset. click to open/close the menu */}
+            <button className={buttonStyle + " " + dropStyle} onClick={props.toggleShowDrop} key={headerid} id={headerid}>
                 {props.character.getPreset() + " ˅"}
             </button> 
             <br />
 
-            <div className={dropContStyle} key={"dropdown content " + props.character.getKey()} id={"dropdown content " + props.character.getKey()}>
+            {/* the hidden menu containing all presets */}
+            <div className={dropContStyle} key={contentdiv} id={contentdiv}>
                 {presets.getPresets().map((preset) => {
+                    const contentpreset = "dropdown content char preset " + props.character.getKey() + " " + preset.getKey();
                     return (
                         <>
-                            <button className={buttonStyle} onClick={() => props.setCharPreset(preset.getName())}
-                                key={"char preset " + props.character.getKey() + " " + preset.getKey()}
-                                id={"char preset " + props.character.getKey() + " " + preset.getKey()}>
+                            <button className={buttonStyle} key={contentpreset} id={contentpreset} onClick={() => props.setCharPreset(preset.getName())} > 
                                 {preset["name"]}
                             </button> <br />
                         </>

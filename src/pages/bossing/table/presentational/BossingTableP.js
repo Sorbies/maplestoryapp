@@ -10,15 +10,16 @@ import SwapPositionC from "../table components/container/SwapPositionC";
 import { bossData } from "../../../../constants/BossData"; //constants
 import styles from "../../../../styles/tables.module.css"; //styles
 
+//presentation for the table of characters
 function BossingTableP(props) {
-    //states
+
+    //fetch needed states from context
     const { characters, presets } = useContext(statesContext);
 
+    //fetch needed css styles
     const tableStyle = styles.table;
     const bossStyle = styles.bosses;
     const columnStyle = styles.column;
-
-    //functions
 
     return (
         <>
@@ -31,6 +32,7 @@ function BossingTableP(props) {
                         <th className={tableStyle}>Character</th>
                         <th className={tableStyle}>Preset</th>
                         <th className={tableStyle}></th>
+                        {/* boss columns  */}
                         {Object.keys(bossData).map((boss) => {
                             return (
                                 <th className={tableStyle + " " + columnStyle} key={boss}>
@@ -48,22 +50,24 @@ function BossingTableP(props) {
                     {characters.getCharacters().map((character) => {
                         return (
                             <tr key={"row " + character.getKey()}>
+                                {/* first column - swap buttons */}
                                 <td className={tableStyle} key={"swap cell " + character.getKey()}>
                                     <SwapPositionC character={character} />
                                 </td>
+                                {/* second column - character names */}
                                 <td className={tableStyle} key={"char cell " + character.getKey()}>
                                     <CharacterNameC character={character} />
                                 </td>
-
+                                {/* third column - preset dropdown */}
                                 <td className={tableStyle} key={"char preset cell " + character.getKey()}>
                                     <ChangePresetC character={character} />
                                 </td>
-
+                                {/* fourth column - check all button */}
                                 <td className={tableStyle}>
                                     <CheckAllC character={character} />
                                 </td>
 
-                                {/* The checkboxes */}
+                                {/* The boss checkboxes */}
                                 {Object.keys(bossData).map((boss) => {
                                     let preset = presets.findPresetByName(character.getPreset());
                                     let difficulty = preset.getBossDifficulty(boss);
@@ -76,7 +80,7 @@ function BossingTableP(props) {
                                     )
                                 })}
 
-                                {/* The delete button */}
+                                {/* last column - The delete button */}
                                 <td className={tableStyle} key={"char delete " + character.getKey()}>
                                     <DeleteCharC character={character} />
                                 </td>
@@ -87,6 +91,7 @@ function BossingTableP(props) {
                 </tbody>
 
             </table>
+            {/* the adder */}
             <div><AddCharC /></div>
         </>
     );
